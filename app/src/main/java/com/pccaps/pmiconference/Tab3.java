@@ -3,16 +3,12 @@ package com.pccaps.pmiconference;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,13 +21,13 @@ import java.util.List;
 public class Tab3 extends Fragment {
 
     static int popChoice;
-    static Speakers jim = new Speakers("jim", 3, 5, "Library", "asdf");
-    static Speakers j = new Speakers("jim", 3, 5, "Library", "asdc");
-    static Speakers ji = new Speakers("jim", 3, 5, "Library", "asdfsadf");
-    static Speakers im = new Speakers("jim", 3, 5, "Library", "sdfs");
+    static Events jim = new Events("jim", 3, 5, "Library", "asdf");
+    static Events j = new Events("jim", 3, 5, "Library", "asdc");
+    static Events ji = new Events("jim", 3, 5, "Library", "asdfsadf");
+    static Events im = new Events("jim", 3, 5, "Library", "sdfs");
 
     ListView listView;
-    static List<Speakers> list = new ArrayList<>(
+    static List<Events> list = new ArrayList<>(
         Arrays.asList(jim, j, ji, im)
     );
 
@@ -41,7 +37,7 @@ public class Tab3 extends Fragment {
         View rootView = inflater.inflate(R.layout.tab3, container, false);
 
         listView = (ListView) rootView.findViewById(R.id.list_view);
-        ArrayAdapter<Speakers> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
+        ArrayAdapter<Events> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
