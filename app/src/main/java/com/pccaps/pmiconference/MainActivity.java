@@ -86,14 +86,14 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    Tab1 tab1 = new Tab1();
-                    return tab1;
+                    Tab3 tab3 = new Tab3();
+                    return tab3;
                 case 1:
                     Tab2 tab2 = new Tab2();
                     return tab2;
                 case 2:
-                    Tab3 tab3 = new Tab3();
-                    return tab3;
+                    Tab1 tab1 = new Tab1();
+                    return tab1;
                 default:
                     return null;
             }
@@ -109,11 +109,11 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "About";
-                case 1:
                     return "Schedule";
-                case 2:
+                case 1:
                     return "Speakers";
+                case 2:
+                    return "About";
             }
             return null;
         }

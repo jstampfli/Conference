@@ -3,7 +3,6 @@ package com.pccaps.pmiconference;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
@@ -17,7 +16,6 @@ import static com.pccaps.pmiconference.Tab3.popChoice;
 public class Pop extends Activity{
 
     TextView textView;
-    Speakers jim = new Speakers("Jim", 3, 5, "Library", "PMI");
 
     @Override
     protected void onCreate(Bundle savedInstanceState){

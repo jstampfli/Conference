@@ -3,16 +3,12 @@ package com.pccaps.pmiconference;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,14 +21,16 @@ import java.util.List;
 public class Tab3 extends Fragment {
 
     static int popChoice;
-    static Speakers jim = new Speakers("jim", 3, 5, "Library", "asdf");
-    static Speakers j = new Speakers("jim", 3, 5, "Library", "asdc");
-    static Speakers ji = new Speakers("jim", 3, 5, "Library", "asdfsadf");
-    static Speakers im = new Speakers("jim", 3, 5, "Library", "sdfs");
+    static Event jim = new Event("Jim", 3, 5, "Library", "PMI", "PMI", 1008);
+    static Event j = new Event("Jim", 3, 5, "Library", "PMI", "PMI", 1009);
+    static Event ji = new Event("Jim", 3, 5, "Library", "PMI", "PMI", 1018);
+    static Event im = new Event("Jim", 3, 5, "Library", "PMI", "PMI", 1098);
+    static Event m = new Event("Jim", 3, 5, "Library", "PMI", "PMI", 1098);
+    static Event i = new Event("Jim", 3, 5, "Library", "PMI", "PMI", 1098);
 
     ListView listView;
-    static List<Speakers> list = new ArrayList<>(
-        Arrays.asList(jim, j, ji, im)
+    static List<Event> list = new ArrayList<>(
+        Arrays.asList(jim, j, ji, im, m, i)
     );
 
 
@@ -41,7 +39,7 @@ public class Tab3 extends Fragment {
         View rootView = inflater.inflate(R.layout.tab3, container, false);
 
         listView = (ListView) rootView.findViewById(R.id.list_view);
-        ArrayAdapter<Speakers> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
+        ArrayAdapter<Event> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
