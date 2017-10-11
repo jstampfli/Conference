@@ -16,7 +16,10 @@ import static com.pccaps.pmiconference.Tab3.popChoice;
 public class Pop extends Activity{
 
     TextView textView;
+<<<<<<< HEAD
+=======
     Events jim = new Events("Jim", 3, 5, "Library", "PMI");
+>>>>>>> 6b47ae8283a8ffb7774146bf266de8141c556fe8
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
