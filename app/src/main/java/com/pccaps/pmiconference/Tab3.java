@@ -72,6 +72,8 @@ public class Tab3 extends Fragment {
             }
         });
 
+        list.clear();
+
         return rootView;
 
     }
