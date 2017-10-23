@@ -22,7 +22,7 @@ public class Events {
     Boolean am = false;
     Boolean pm = false;
 
-    String spacer = "            ";
+    String spacer = "             ";
     String Lspacer = "                      ";
     String Sspacer = "   ";
 
