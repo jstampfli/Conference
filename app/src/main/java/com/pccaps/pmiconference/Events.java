@@ -10,21 +10,21 @@ import java.util.List;
 
 public class Events {
     String speaker;
-    static long STime;
-    static long ETime;
+    long STime;
+    long ETime;
     String P;
     String D;
     String subject;
     long date;
-    static Boolean am = false;
-    static Boolean pm = false;
+
+    String AsTime;
+    String AeTime;
+    Boolean am = false;
+    Boolean pm = false;
 
     String spacer = "            ";
-    String Lspacer = "               ";
+    String Lspacer = "                      ";
     String Sspacer = "   ";
-
-    static String AsTime = changeTime(STime);
-    static String AeTime = changeTime(ETime);
 
     public Events(String name, long st, long et, String place, String Description, String topic, long day){
         speaker=name;
@@ -34,29 +34,34 @@ public class Events {
         D=Description;
         subject=topic;
         date=day;
+
+        AsTime = changeTime(st);
+        AeTime = changeTime(et);
     }
+
     public String toString(){
         return AsTime+spacer+speaker+"\n"+Sspacer+"to"+Lspacer+P+"\n"+AeTime+spacer+subject;
     }
-    public static String changeTime(long x){
+    public String changeTime(long x){
         String time = String.valueOf(x);
         char[] eTime = time.toCharArray();
         List<Character> LeTime = new ArrayList<>();
         String whole="";
         String fHalf="";
         String eHalf="";
+        int IfHalf;
         for(char i : eTime){
             LeTime.add(i);
         }
-        for(char i : LeTime){
-            if(LeTime.indexOf(i)+3<LeTime.size()){
-                fHalf+=String.valueOf(i);
+        for(int y=0; y<LeTime.size();y++){
+            if(y+2<LeTime.size()){
+                fHalf+=String.valueOf(LeTime.get(y));
             }
             else{
-                eHalf+=String.valueOf(i);
+                eHalf+=String.valueOf(LeTime.get(y));
             }
         }
-        for(char i : eTime){
+        for(char i : LeTime){
             whole+=String.valueOf(i);
         }
         int Iwhole = Integer.parseInt(whole);
@@ -70,8 +75,13 @@ public class Events {
             time=fHalf+":"+eHalf+" AM";
         }
         else{
+            IfHalf = Integer.parseInt(fHalf);
+            IfHalf = IfHalf%12;
+            fHalf = String.valueOf(IfHalf);
             time=fHalf+":"+eHalf+" PM";
         }
+        am=false;
+        pm=false;
         return time;
     }
 }

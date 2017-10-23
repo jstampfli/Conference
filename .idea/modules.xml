@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Conference.iml" filepath="$PROJECT_DIR$/Conference.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PMIConference.iml" filepath="$PROJECT_DIR$/PMIConference.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
