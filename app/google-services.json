@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "491467131756",
+    "firebase_url": "https://pmiconferencedatabase.firebaseio.com",
+    "project_id": "pmiconferencedatabase",
+    "storage_bucket": "pmiconferencedatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491467131756:android:abf2aba81017f64b",
+        "android_client_info": {
+          "package_name": "com.pccaps.conference"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491467131756-m431ucheaqdm8tu6kj83sqo20ql5l0f9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pccaps.conference",
+            "certificate_hash": "879e0fbe853d757a7c04ef28e27f7c312b0cffac"
+          }
+        },
+        {
+          "client_id": "491467131756-2r1omcasg95egtrts59s5o60n1083mdl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6q6HXGpRaAma-4oWHYS2nBcAX3N71u-Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491467131756-2r1omcasg95egtrts59s5o60n1083mdl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

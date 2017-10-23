@@ -6,6 +6,8 @@ import android.util.DisplayMetrics;
 import android.widget.TextView;
 
 
+import static com.pccaps.pmiconference.Events.AeTime;
+import static com.pccaps.pmiconference.Events.AsTime;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.popChoice;
 
@@ -15,7 +17,7 @@ import static com.pccaps.pmiconference.Tab3.popChoice;
 
 public class Pop extends Activity{
 
-    TextView textView;
+    TextView textViewBlowup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -31,8 +33,10 @@ public class Pop extends Activity{
 
         getWindow().setLayout(width,height);
 
-        textView = (TextView) findViewById(R.id.poptext);
-        textView.setText(String.valueOf(list.get(popChoice)));
-
+        textViewBlowup = (TextView) findViewById(R.id.blowup);
+        textViewBlowup.setText(
+                "\n\n"+list.get(popChoice).subject+"\n\n"+list.get(popChoice).speaker+"\n\n"+list.get(popChoice).P+"\n\n"+list.get(popChoice).date+"\n\n"+AsTime+" to "+AeTime+"\n\n"+list.get(popChoice).D
+        );
+        textViewBlowup.setTextSize(20);
     }
 }

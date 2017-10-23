@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,16 +42,10 @@ public class Tab3 extends Fragment {
     static int dataTemp=0;
 
     static int popChoice;
-    static Events jim = new Events("jim", 3, 5, "Library", "asdf", "", 5);
-    static Events j = new Events("jim", 3, 5, "Library", "asdc", "", 5);
-    static Events ji = new Events("jim", 3, 5, "Library", "asdfsadf", "", 5);
-    static Events im = new Events("jim", 3, 5, "Library", "sdfs", "", 5);
     static Events temp;
 
     ListView listView;
-    static List<Events> list = new ArrayList<>(
-        Arrays.asList(jim, j, ji, im)
-    );
+    static List<Events> list = new ArrayList<>();
 
 
     @Override
@@ -96,9 +89,6 @@ public class Tab3 extends Fragment {
                                 Object retrieve = snapshot.getValue();
                                 data[dataTemp]=retrieve;
                                 dataTemp++;
-                                for(int i=0; i<data.length; i++){
-                                    System.out.println(String.valueOf(data[i]));
-                                }
                             }
                             dataTemp=0;
                             name = (String) data[3];
