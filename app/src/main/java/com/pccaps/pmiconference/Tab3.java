@@ -36,6 +36,7 @@ public class Tab3 extends Fragment {
     static long date;
     static String location;
     static String subject;
+    static int countClear=0;
 
     static Object[] data = new Object[7];
 
@@ -65,8 +66,6 @@ public class Tab3 extends Fragment {
             }
         });
 
-        list.clear();
-
         return rootView;
 
     }
@@ -74,16 +73,22 @@ public class Tab3 extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
         dRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                list.clear();
+                //list.clear();
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
+
                     snapshot.getRef().addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            if(countClear%2==0){
+                                list.clear();
+                            }
 
                             for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
                                 Object retrieve = snapshot.getValue();
@@ -103,6 +108,7 @@ public class Tab3 extends Fragment {
                             list.add(temp);
                             ArrayAdapter<Events> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
                             listView.setAdapter(adapter);
+                            countClear++;
                         }
 
                         @Override

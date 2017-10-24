@@ -2,6 +2,7 @@ package com.pccaps.pmiconference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 /**
  * Created by User1 on 10/3/2017.
@@ -19,6 +20,9 @@ public class Events {
 
     String AsTime;
     String AeTime;
+
+    String Adate;
+
     Boolean am = false;
     Boolean pm = false;
 
@@ -37,6 +41,8 @@ public class Events {
 
         AsTime = changeTime(st);
         AeTime = changeTime(et);
+
+        Adate = changeDate(day);
     }
 
     public String toString(){
@@ -83,5 +89,27 @@ public class Events {
         am=false;
         pm=false;
         return time;
+    }
+
+    public String changeDate(long x){
+        String date = String.valueOf(x);
+        char[] Cdate = date.toCharArray();
+
+        String fHalf = "";
+        String eHalf = "";
+
+        List<Character> LCdate = new ArrayList<>();
+        for(char i:Cdate){
+            LCdate.add(i);
+        }
+        for(int y=0; y<LCdate.size();y++){
+            if(y+2<LCdate.size()){
+                fHalf+=String.valueOf(LCdate.get(y));
+            }
+            else{
+                eHalf+=String.valueOf(LCdate.get(y));
+            }
+        }
+        return fHalf+"/"+eHalf;
     }
 }

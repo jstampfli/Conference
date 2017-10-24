@@ -32,7 +32,7 @@ public class Pop extends Activity{
 
         textViewBlowup = (TextView) findViewById(R.id.blowup);
         textViewBlowup.setText(
-                "\n\n"+list.get(popChoice).subject+"\n\n"+list.get(popChoice).speaker+"\n\n"+list.get(popChoice).P+"\n\n"+list.get(popChoice).date+"\n\n"+list.get(popChoice).AsTime+" to "+list.get(popChoice).AeTime+"\n\n"+list.get(popChoice).D
+                "\n\n"+list.get(popChoice).subject+"\n\n"+list.get(popChoice).speaker+"\n\n"+list.get(popChoice).P+"\n\n"+list.get(popChoice).Adate+"\n\n"+list.get(popChoice).AsTime+" to "+list.get(popChoice).AeTime+"\n\n"+list.get(popChoice).D
         );
         textViewBlowup.setTextSize(20);
     }
