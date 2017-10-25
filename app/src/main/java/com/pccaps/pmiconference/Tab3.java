@@ -29,6 +29,7 @@ public class Tab3 extends Fragment {
     DatabaseReference dRef = database.getReference("events");
     DatabaseReference dRefEventNum = dRef.child("event1");
 
+
     static String name;
     static long startTime;
     static long endTime;
@@ -48,6 +49,7 @@ public class Tab3 extends Fragment {
     ListView listView;
     static List<Events> list = new ArrayList<>();
 
+    ArrayAdapter<Events> adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,15 +80,15 @@ public class Tab3 extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //list.clear();
+                list.clear();
 
-                for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
+                for(final DataSnapshot snapshot : dataSnapshot.getChildren() ){
 
                     snapshot.getRef().addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
-                            if(countClear%2==0){
+                            if(String.valueOf(snapshot.getRef()).equals("https://pmiconferencedatabase.firebaseio.com/events/event1")){
                                 list.clear();
                             }
 
@@ -106,8 +108,10 @@ public class Tab3 extends Fragment {
 
                             temp = new Events(name, startTime, endTime, location, description, subject, date);
                             list.add(temp);
-                            ArrayAdapter<Events> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
+
+                            adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
                             listView.setAdapter(adapter);
+
                             countClear++;
                         }
 

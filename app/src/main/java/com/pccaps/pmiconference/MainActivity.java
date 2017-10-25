@@ -1,5 +1,6 @@
 package com.pccaps.pmiconference;
 
+import android.content.pm.ActivityInfo;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
