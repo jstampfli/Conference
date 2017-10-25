@@ -26,6 +26,8 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"/>
+        android:layout_gravity="end|bottom"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabSelectedTextColor="@color/colorPrimary" />
 
 </android.support.design.widget.CoordinatorLayout>
