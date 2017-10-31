@@ -27,8 +27,6 @@ public class Tab3 extends Fragment {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dRef = database.getReference("events");
-    DatabaseReference dRefEventNum = dRef.child("event1");
-
 
     static String name;
     static long startTime;
@@ -53,12 +51,9 @@ public class Tab3 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //dRef=FirebaseDatabase.getInstance().getReference("Events");
 
         View rootView = inflater.inflate(R.layout.tab3, container, false);
         listView = (ListView) rootView.findViewById(R.id.list_view);
-        //ArrayAdapter<Events> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
-        //listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
