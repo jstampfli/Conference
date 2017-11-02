@@ -1,5 +1,7 @@
 package com.pccaps.pmiconference;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -9,9 +11,9 @@ import java.util.Date;
  */
 
 
-public class Events {
+public class Events implements Comparable<Events>{
     String speaker;
-    long STime;
+    static long STime;
     long ETime;
     String P;
     String D;
@@ -111,5 +113,21 @@ public class Events {
             }
         }
         return fHalf+"/"+eHalf;
+    }
+    public static long getSTime(){
+        return STime;
+    }
+
+    @Override
+    public int compareTo(@NonNull Events events) {
+        if(this.STime>events.STime){
+            return 1;
+        }
+        if(this.STime<events.STime){
+            return -1;
+        }
+        else{
+            return 0;
+        }
     }
 }

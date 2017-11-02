@@ -16,7 +16,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -45,7 +48,7 @@ public class Tab3 extends Fragment {
     static Events temp;
 
     ListView listView;
-    static List<Events> list = new ArrayList<>();
+    static ArrayList<Events> list = new ArrayList<>();
 
     ArrayAdapter<Events> adapter;
 
@@ -122,7 +125,6 @@ public class Tab3 extends Fragment {
 
             }
         });
+        Collections.sort(list);
     }
-
-
 }
