@@ -2,6 +2,7 @@ package com.pccaps.pmiconference;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ import java.util.List;
  * Created by User1 on 9/30/2017.
  */
 
-public class Tab3 extends Fragment {
+public class Tab3 extends Fragment{
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dRef = database.getReference("events");
@@ -48,7 +49,7 @@ public class Tab3 extends Fragment {
     static Events temp;
 
     ListView listView;
-    static ArrayList<Events> list = new ArrayList<>();
+    static List<Events> list = new ArrayList<>();
 
     ArrayAdapter<Events> adapter;
 
@@ -107,6 +108,8 @@ public class Tab3 extends Fragment {
                             temp = new Events(name, startTime, endTime, location, description, subject, date);
                             list.add(temp);
 
+                            Collections.sort(list, new EventsComparator());
+
                             adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
                             listView.setAdapter(adapter);
 
@@ -125,6 +128,5 @@ public class Tab3 extends Fragment {
 
             }
         });
-        Collections.sort(list);
     }
 }

@@ -3,6 +3,7 @@ package com.pccaps.pmiconference;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Date;
 
@@ -11,14 +12,14 @@ import java.util.Date;
  */
 
 
-public class Events implements Comparable<Events>{
+public class Events{
     String speaker;
     static long STime;
     long ETime;
     String P;
     String D;
     String subject;
-    long date;
+    static long date;
 
     String AsTime;
     String AeTime;
@@ -32,7 +33,21 @@ public class Events implements Comparable<Events>{
     String Lspacer = "                      ";
     String Sspacer = "   ";
 
+    List<String> months = new ArrayList<String>();
+
     public Events(String name, long st, long et, String place, String Description, String topic, long day){
+        months.add("January");
+        months.add("February");
+        months.add("March");
+        months.add("April");
+        months.add("May");
+        months.add("June");
+        months.add("July");
+        months.add("August");
+        months.add("September");
+        months.add("October");
+        months.add("November");
+        months.add("December");
         speaker=name;
         STime=st;
         ETime=et;
@@ -112,22 +127,18 @@ public class Events implements Comparable<Events>{
                 eHalf+=String.valueOf(LCdate.get(y));
             }
         }
-        return fHalf+"/"+eHalf;
-    }
-    public static long getSTime(){
-        return STime;
-    }
-
-    @Override
-    public int compareTo(@NonNull Events events) {
-        if(this.STime>events.STime){
-            return 1;
-        }
-        if(this.STime<events.STime){
-            return -1;
+        char[] cEHalf = eHalf.toCharArray();
+        if(cEHalf[0]=='0'){
+            return months.get(Integer.parseInt(fHalf)-1)+" "+String.valueOf(cEHalf[1]);
         }
         else{
-            return 0;
+            return months.get(Integer.parseInt(fHalf)-1)+" "+eHalf;
         }
+    }
+    public static int getSTime(){
+        return (int)STime;
+    }
+    public static int getDate(){
+        return (int)date;
     }
 }
