@@ -2,7 +2,6 @@ package com.pccaps.pmiconference;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -41,7 +39,7 @@ public class Tab3 extends Fragment{
     static String subject;
     static int countClear=0;
 
-    static Object[] data = new Object[7];
+    static Object[] data = new Object[8];
 
     static int dataTemp=0;
 
@@ -63,7 +61,7 @@ public class Tab3 extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 popChoice=position;
-                startActivity(new Intent(getActivity(), Pop.class));
+                startActivity(new Intent(getActivity(), PopTab3.class));
             }
         });
 
@@ -108,7 +106,7 @@ public class Tab3 extends Fragment{
                             temp = new Events(name, startTime, endTime, location, description, subject, date);
                             list.add(temp);
 
-                            Collections.sort(list, new EventsComparator());
+                            Collections.sort(list, new CompareEvents());
 
                             adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
                             listView.setAdapter(adapter);
@@ -129,4 +127,18 @@ public class Tab3 extends Fragment{
             }
         });
     }
+
+    public static class CompareEvents implements Comparator<Events>{
+
+        @Override
+        public int compare(Events events, Events t1) {
+            if(events.getDate()==t1.getDate()){
+                return (events.getSTime() - t1.getSTime());
+            }
+            else{
+                return events.getDate()-t1.getDate();
+            }
+        }
+    }
 }
+

@@ -14,12 +14,12 @@ import java.util.Date;
 
 public class Events{
     String speaker;
-    static long STime;
+    long STime;
     long ETime;
     String P;
     String D;
     String subject;
-    static long date;
+    long date;
 
     String AsTime;
     String AeTime;
@@ -135,10 +135,10 @@ public class Events{
             return months.get(Integer.parseInt(fHalf)-1)+" "+eHalf;
         }
     }
-    public static int getSTime(){
+    public int getSTime(){
         return (int)STime;
     }
-    public static int getDate(){
+    public int getDate(){
         return (int)date;
     }
 }

@@ -3,8 +3,10 @@ package com.pccaps.pmiconference;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.TextView;
 
+import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.popChoice;
 
@@ -12,7 +14,7 @@ import static com.pccaps.pmiconference.Tab3.popChoice;
  * Created by User1 on 10/3/2017.
  */
 
-public class Pop extends Activity{
+public class PopTab3 extends Activity{
 
     TextView textViewBlowup;
 
@@ -20,7 +22,7 @@ public class Pop extends Activity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.popupwindow);
+        setContentView(R.layout.popupwindowtab3);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -35,5 +37,9 @@ public class Pop extends Activity{
                 "\n\n"+list.get(popChoice).subject+"\n\n"+list.get(popChoice).speaker+"\n\n"+list.get(popChoice).P+"\n\n"+list.get(popChoice).Adate+"\n\n"+list.get(popChoice).AsTime+" to "+list.get(popChoice).AeTime+"\n\n"+list.get(popChoice).D
         );
         textViewBlowup.setTextSize(20);
+    }
+    public void addEventsClick(View view){
+        Events temp = new Events(list.get(popChoice).speaker, list.get(popChoice).STime, list.get(popChoice).ETime, list.get(popChoice).P, list.get(popChoice).D, list.get(popChoice).subject, list.get(popChoice).date);
+        customizableList.add(temp);
     }
 }

@@ -79,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    Tab3 tab3 = new Tab3();
-                    return tab3;
-                case 1:
                     Tab2 tab2 = new Tab2();
                     return tab2;
+                case 1:
+                    Tab3 tab3 = new Tab3();
+                    return tab3;
                 case 2:
                     Tab1 tab1 = new Tab1();
                     return tab1;
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+
             return 3;
         }
 
@@ -102,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Schedule";
+                    return "Saved Events";
                 case 1:
-                    return "Speakers";
+                    return "Schedule";
                 case 2:
                     return "About";
             }

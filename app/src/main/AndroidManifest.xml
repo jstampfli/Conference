@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.pccaps.pmiconference.Pop"></activity>
+        <activity android:name="com.pccaps.pmiconference.PopTab3"></activity>
+        <activity android:name="com.pccaps.pmiconference.PopTab2"></activity>
     </application>
 
 </manifest>

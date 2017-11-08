@@ -10,4 +10,14 @@
         android:text="TextView"
         android:gravity="center"/>
 
+    <Button
+        android:id="@+id/addEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/blowup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:onClick="addEventsClick"
+        android:text="Add Event" />
+
 </RelativeLayout>
