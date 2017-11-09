@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,9 +51,9 @@ public class Tab2 extends Fragment {
     public void onStart() {
         super.onStart();
 
+        Collections.sort(customizableList, new Tab3.CompareEvents());
+
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, customizableList);
         eventsView.setAdapter(adapter);
-
-        Collections.sort(customizableList, new Tab3.CompareEvents());
     }
 }
