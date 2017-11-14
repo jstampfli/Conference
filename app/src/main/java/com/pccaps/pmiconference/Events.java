@@ -65,8 +65,14 @@ public class Events{
         Adate = changeDate(day);
     }
 
+    public static String padLeft(String s, int n) {
+        return String.format("%1$" + n + "s", s);
+    }
+
     public String toString(){
-        return AsTime+spacer+speaker+"\n"+Sspacer+"to"+Lspacer+P+"\n"+AeTime+spacer+subject;
+        String rightSide = String.format("%4s",speaker+"\n"+P+"\n"+subject);
+        String leftSide = AsTime+"\nto\n"+AeTime;
+        return AsTime+padLeft(speaker, 30)+"\n"+Sspacer+"to"+padLeft(P, 36)+"\n"+AeTime+padLeft(subject, 40);
     }
     public String changeTime(long x){
         String time = String.valueOf(x);
