@@ -20,6 +20,7 @@
         </activity>
         <activity android:name="com.pccaps.pmiconference.PopTab3"></activity>
         <activity android:name="com.pccaps.pmiconference.PopTab2"></activity>
+        <activity android:name="com.pccaps.pmiconference.PopTabEvents"></activity>
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ public class Events{
     String D;
     String subject;
     long date;
+    String tracks;
 
     String AsTime;
     String AeTime;
@@ -35,7 +36,7 @@ public class Events{
 
     List<String> months = new ArrayList<String>();
 
-    public Events(String name, long st, long et, String place, String Description, String topic, long day){
+    public Events(String name, long st, long et, String place, String Description, String topic, long day, String t){
         months.add("January");
         months.add("February");
         months.add("March");
@@ -48,6 +49,7 @@ public class Events{
         months.add("October");
         months.add("November");
         months.add("December");
+
         speaker=name;
         STime=st;
         ETime=et;
@@ -55,6 +57,7 @@ public class Events{
         D=Description;
         subject=topic;
         date=day;
+        tracks=t;
 
         AsTime = changeTime(st);
         AeTime = changeTime(et);

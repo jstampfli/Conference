@@ -37,6 +37,8 @@ public class Tab3 extends Fragment{
     static long date;
     static String location;
     static String subject;
+    static String tracks;
+
     static int countClear=0;
 
     static Object[] data = new Object[8];
@@ -49,7 +51,9 @@ public class Tab3 extends Fragment{
     ListView listView;
     static List<Events> list = new ArrayList<>();
 
-    ArrayAdapter<Events> adapter;
+    static List<String> trackList = new ArrayList<>();
+
+    ArrayAdapter<String> adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,7 +65,7 @@ public class Tab3 extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 popChoice=position;
-                startActivity(new Intent(getActivity(), PopTab3.class));
+                startActivity(new Intent(getActivity(), PopTabEvents.class));
             }
         });
 
@@ -72,12 +76,14 @@ public class Tab3 extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+        //trackList.clear();
 
         dRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 list.clear();
+                trackList.clear();
 
                 for(final DataSnapshot snapshot : dataSnapshot.getChildren() ){
 
@@ -102,13 +108,20 @@ public class Tab3 extends Fragment{
                             date = (long) data[0];
                             location = (String) data[2];
                             subject = (String) data[4];
+                            tracks = (String) data[7];
 
-                            temp = new Events(name, startTime, endTime, location, description, subject, date);
+                            if(!trackList.contains(tracks)){
+                                trackList.add(tracks);
+                            }
+
+                            Collections.sort(trackList);
+
+                            temp = new Events(name, startTime, endTime, location, description, subject, date, tracks);
                             list.add(temp);
 
                             Collections.sort(list, new CompareEvents());
 
-                            adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, list);
+                            adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, trackList);
                             listView.setAdapter(adapter);
 
                             countClear++;

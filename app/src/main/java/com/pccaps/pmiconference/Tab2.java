@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.pccaps.pmiconference.Tab3.popChoice;
+import static com.pccaps.pmiconference.PopTabEvents.eventChoice;
 
 /**
  * Created by User1 on 9/30/2017.

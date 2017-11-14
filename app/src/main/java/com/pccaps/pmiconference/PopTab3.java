@@ -11,10 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Set;
 
+import static com.pccaps.pmiconference.PopTabEvents.eventsTrack;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.name;
 import static com.pccaps.pmiconference.Tab3.popChoice;
+import static com.pccaps.pmiconference.PopTabEvents.eventChoice;
 import static com.pccaps.pmiconference.Tab3.startTime;
 
 /**
@@ -49,13 +51,13 @@ public class PopTab3 extends Activity{
 
         textViewBlowup = (TextView) findViewById(R.id.blowup);
         textViewBlowup.setText(
-                "\n\n"+list.get(popChoice).subject+"\n\n"+list.get(popChoice).speaker+"\n\n"+list.get(popChoice).P+"\n\n"+list.get(popChoice).Adate+"\n\n"+list.get(popChoice).AsTime+" to "+list.get(popChoice).AeTime+"\n\n"+list.get(popChoice).D
+                "\n\n"+eventsTrack.get(eventChoice).subject+"\n\n"+eventsTrack.get(eventChoice).speaker+"\n\n"+eventsTrack.get(eventChoice).P+"\n\n"+eventsTrack.get(eventChoice).Adate+"\n\n"+eventsTrack.get(eventChoice).AsTime+" to "+eventsTrack.get(eventChoice).AeTime+"\n\n"+eventsTrack.get(eventChoice).D
         );
         textViewBlowup.setTextSize(20);
     }
 
     public void addEventsClick(View view){
-        Events temp = new Events(list.get(popChoice).speaker, list.get(popChoice).STime, list.get(popChoice).ETime, list.get(popChoice).P, list.get(popChoice).D, list.get(popChoice).subject, list.get(popChoice).date);
+        Events temp = new Events(eventsTrack.get(eventChoice).speaker, eventsTrack.get(eventChoice).STime, eventsTrack.get(eventChoice).ETime, eventsTrack.get(eventChoice).P, eventsTrack.get(eventChoice).D, eventsTrack.get(eventChoice).subject, eventsTrack.get(eventChoice).date, eventsTrack.get(eventChoice).tracks);
         Boolean check=true;
         for(int i=0; i<customizableList.size();i++){
             if((customizableList.get(i).getSTime()==temp.getSTime()) && (customizableList.get(i).subject.equals(temp.subject)) && (customizableList.get(i).speaker.equals(temp.speaker))){
@@ -67,8 +69,10 @@ public class PopTab3 extends Activity{
             toast.show();
         }
         else{
-            toast=Toast.makeText(context, "This event has already been added.", duration);
-            toast.show();
+            if(!(toast.getView().isShown())){
+                toast=Toast.makeText(context, "This event has already been added.", duration);
+                toast.show();
+            }
         }
     }
 }
