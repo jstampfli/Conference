@@ -12,7 +12,7 @@ import java.util.Date;
  */
 
 
-public class Events{
+public class Events {
     String speaker;
     long STime;
     long ETime;
@@ -30,25 +30,26 @@ public class Events{
     Boolean am = false;
     Boolean pm = false;
 
-    String spacer = "             ";
+    /*String spacer = "  ";
     String Lspacer = "                      ";
-    String Sspacer = "   ";
+    String Sspacer = "   ";*/
 
-    List<String> months = new ArrayList<String>();
+    String[] months = new String[]{
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "Novermber",
+            "December"
+    };
 
     public Events(String name, long st, long et, String place, String Description, String topic, long day, String t){
-        months.add("January");
-        months.add("February");
-        months.add("March");
-        months.add("April");
-        months.add("May");
-        months.add("June");
-        months.add("July");
-        months.add("August");
-        months.add("September");
-        months.add("October");
-        months.add("November");
-        months.add("December");
 
         speaker=name;
         STime=st;
@@ -69,10 +70,24 @@ public class Events{
         return String.format("%1$" + n + "s", s);
     }
 
+    public static String padRight(String s, int n) {
+        return String.format("%1$-" + n + "s", s);
+    }
+
+    public String evenSpace(String x){
+        char[] num = x.toCharArray();
+        String space=" ";
+        for(int i=num.length+1; i<15; i++){
+            space=space+"  ";
+        }
+        x+=space;
+        return x;
+    }
+
     public String toString(){
-        String rightSide = String.format("%4s",speaker+"\n"+P+"\n"+subject);
-        String leftSide = AsTime+"\nto\n"+AeTime;
-        return AsTime+padLeft(speaker, 30)+"\n"+Sspacer+"to"+padLeft(P, 36)+"\n"+AeTime+padLeft(subject, 40);
+        //String rightSide = String.format("%4s",speaker+"\n"+P+"\n"+subject);
+        //String leftSide = AsTime+"\nto\n"+AeTime;
+        return evenSpace(AsTime)+speaker+"\n"+evenSpace("to")+"  "+P+"\n"+evenSpace(AeTime)+subject;
     }
     public String changeTime(long x){
         String time = String.valueOf(x);
@@ -138,10 +153,10 @@ public class Events{
         }
         char[] cEHalf = eHalf.toCharArray();
         if(cEHalf[0]=='0'){
-            return months.get(Integer.parseInt(fHalf)-1)+" "+String.valueOf(cEHalf[1]);
+            return months[Integer.parseInt(fHalf)-1]+" "+String.valueOf(cEHalf[1]);
         }
         else{
-            return months.get(Integer.parseInt(fHalf)-1)+" "+eHalf;
+            return months[Integer.parseInt(fHalf)-1]+" "+eHalf;
         }
     }
     public int getSTime(){

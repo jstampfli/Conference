@@ -9,7 +9,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Set;
+
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
 
 import static com.pccaps.pmiconference.PopTabEvents.eventsTrack;
 import static com.pccaps.pmiconference.Tab2.customizableList;
@@ -68,6 +75,8 @@ public class PopTab3 extends Activity{
         if(check){
             customizableList.add(temp);
             toast.show();
+
+            //where I want to add my local saving method
         }
         else{
             if(!(toast.getView().isShown())){

@@ -76,7 +76,6 @@ public class Tab3 extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
-        //trackList.clear();
 
         dRef.addValueEventListener(new ValueEventListener() {
             @Override
