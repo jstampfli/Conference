@@ -35,8 +35,10 @@ public class Tab2 extends Fragment {
     static List<Events> customizableList = new ArrayList<>();
     ArrayAdapter adapter;
 
-    static String howToAdd = "To add an Event to this page, go to the schedule tab, click on a track and then an event that you like, and click the \"Add Event\" button.";
+    static String intro = "To add and Event to this Page:";
+    static String howToAdd = "\n1.\tGo to the schedule tab\n\n 2.\tClick on a track and then an event that you \n\t\t\tfind interesting\n\n 3.\tClick the \"Add Event\" button\n\n4.\tGo to the \"SAVED EVENTS\" tab to see the \n\t\t\tevent";
     TextView helper;
+    TextView helperIntro;
 
     static SharedPreferences prefs;
     static SharedPreferences.Editor editor;
@@ -65,6 +67,9 @@ public class Tab2 extends Fragment {
     public void onStart() {
         super.onStart();
 
+        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        editor = prefs.edit();
+
 
         /*if(!prefs.getBoolean("firstRun", true)) {
             for (int i = 0; i < customizableList.size(); i++) {
@@ -91,13 +96,12 @@ public class Tab2 extends Fragment {
 
         if(customizableList.size()!=0){
             helper.setText("");
+            helperIntro.setText("");
         }
         else{
             helper.setText(howToAdd);
+            helperIntro.setText(intro);
         }
-
-        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        editor = prefs.edit();
 
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, customizableList);
         eventsView.setAdapter(adapter);
@@ -120,6 +124,7 @@ public class Tab2 extends Fragment {
         });
 
         helper = (TextView)rootView.findViewById(R.id.helperText);
+        helperIntro = (TextView)rootView.findViewById(R.id.helperIntro);
 
         return rootView;
     }
