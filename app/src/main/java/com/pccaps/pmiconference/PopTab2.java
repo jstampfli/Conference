@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import static com.pccaps.pmiconference.Tab2.customizableList;
+import static com.pccaps.pmiconference.Tab2.editor;
+import static com.pccaps.pmiconference.Tab2.findEvents;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.popChoice;
 
@@ -42,5 +44,12 @@ public class PopTab2 extends Activity {
         //Events temp = new Events(customizableList.get(popChoice).speaker, customizableList.get(popChoice).STime, customizableList.get(popChoice).ETime, customizableList.get(popChoice).P, customizableList.get(popChoice).D, customizableList.get(popChoice).subject, customizableList.get(popChoice).date);
         customizableList.remove(customizableList.get(popChoice));
         this.finish();
+
+        for (int i = 0; i < customizableList.size(); i++) {
+            editor.putInt(String.valueOf(i), findEvents(customizableList.get(i), list));
+        }
+        editor.putInt("customizableListSize", customizableList.size());
+        editor.putBoolean("firstRun", false);
+        editor.apply();
     }
 }

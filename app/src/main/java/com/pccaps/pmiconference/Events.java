@@ -66,18 +66,18 @@ public class Events {
         Adate = changeDate(day);
     }
 
-    public static String padLeft(String s, int n) {
+    /*public static String padLeft(String s, int n) {
         return String.format("%1$" + n + "s", s);
     }
 
     public static String padRight(String s, int n) {
         return String.format("%1$-" + n + "s", s);
-    }
+    }*/
 
     public String evenSpace(String x){
         char[] num = x.toCharArray();
         String space=" ";
-        for(int i=num.length+1; i<15; i++){
+        for(int i=num.length+1; i<11; i++){
             space=space+"  ";
         }
         x+=space;
@@ -87,7 +87,7 @@ public class Events {
     public String toString(){
         //String rightSide = String.format("%4s",speaker+"\n"+P+"\n"+subject);
         //String leftSide = AsTime+"\nto\n"+AeTime;
-        return evenSpace(AsTime)+speaker+"\n"+evenSpace("to")+"  "+P+"\n"+evenSpace(AeTime)+subject;
+        return evenSpace(AsTime)+subject+"\n"+evenSpace("to")+"  "+P+"\n"+evenSpace(AeTime)+speaker;
     }
     public String changeTime(long x){
         String time = String.valueOf(x);
