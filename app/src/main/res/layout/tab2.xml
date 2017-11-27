@@ -3,7 +3,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/helperIntro"
+        android:id="@+id/hIntro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp" />
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:layout_below="@+id/helperIntro"/>
+        android:layout_below="@+id/hIntro"/>
 
     <ListView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/eventsView"

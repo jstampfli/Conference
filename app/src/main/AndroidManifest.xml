@@ -21,6 +21,8 @@
         <activity android:name="com.pccaps.pmiconference.PopTab3"></activity>
         <activity android:name="com.pccaps.pmiconference.PopTab2"></activity>
         <activity android:name="com.pccaps.pmiconference.PopTabEvents"></activity>
+        <activity android:name="com.pccaps.pmiconference.PopTabCustomizable"></activity>
+        <activity android:name="com.pccaps.pmiconference.PopTabDates"></activity>
     </application>
 
 </manifest>

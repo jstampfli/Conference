@@ -22,6 +22,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.pccaps.pmiconference.Events.changeDate;
+import static com.pccaps.pmiconference.Tab2.datesAdapter;
+import static com.pccaps.pmiconference.Tab2.eventsView;
+
 /**
  * Created by User1 on 9/30/2017.
  */
@@ -42,7 +46,7 @@ public class Tab3 extends Fragment{
 
     static int countClear=0;
 
-    static Object[] data = new Object[8];
+    static Object[] data = new Object[9];
 
     static int dataTemp=0;
 
@@ -53,6 +57,8 @@ public class Tab3 extends Fragment{
     static List<Events> list = new ArrayList<>();
 
     static List<String> trackList = new ArrayList<>();
+
+    static List<Long> dateList = new ArrayList<>();
 
     ArrayAdapter<String> adapter;
 
@@ -66,7 +72,7 @@ public class Tab3 extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 popChoice=position;
-                startActivity(new Intent(getActivity(), PopTabEvents.class));
+                startActivity(new Intent(getActivity(), PopTabDates.class));
             }
         });
 
@@ -84,6 +90,7 @@ public class Tab3 extends Fragment{
 
                 list.clear();
                 trackList.clear();
+                dateList.clear();
 
                 for(final DataSnapshot snapshot : dataSnapshot.getChildren() ){
 
@@ -101,18 +108,23 @@ public class Tab3 extends Fragment{
                                 dataTemp++;
                             }
                             dataTemp=0;
-                            name = (String) data[3];
-                            startTime = (long) data[6];
-                            endTime = (long) data[5];
+                            name = (String) data[4];
+                            startTime = (long) data[7];
+                            endTime = (long) data[6];
                             description = (String) data[1];
                             date = (long) data[0];
-                            location = (String) data[2];
-                            subject = (String) data[4];
-                            tracks = (String) data[7];
+                            location = (String) data[3];
+                            subject = (String) data[5];
+                            tracks = (String) data[8];
 
                             if(!trackList.contains(tracks)){
                                 trackList.add(tracks);
                             }
+                            if(!dateList.contains(date)){
+                                dateList.add(date);
+                            }
+
+                            Collections.sort(dateList);
 
                             Collections.sort(trackList);
 

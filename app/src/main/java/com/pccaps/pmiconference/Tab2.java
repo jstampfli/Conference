@@ -21,6 +21,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.pccaps.pmiconference.Events.changeDate;
+import static com.pccaps.pmiconference.Tab3.dateList;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.popChoice;
 import static com.pccaps.pmiconference.PopTabEvents.eventChoice;
@@ -33,17 +35,15 @@ public class Tab2 extends Fragment {
 
     static ListView eventsView;
     static List<Events> customizableList = new ArrayList<>();
-    ArrayAdapter adapter;
+    static ArrayAdapter datesAdapter;
 
     static String intro = "To add and Event to this Page:";
-    static String howToAdd = "\n1.\tGo to the schedule tab\n\n 2.\tClick on a track and then an event that you \n\t\t\tfind interesting\n\n 3.\tClick the \"Add Event\" button\n\n4.\tGo to the \"SAVED EVENTS\" tab to see the \n\t\t\tevent";
-    TextView helper;
-    TextView helperIntro;
+    static String howToAdd = "\n1.\tGo to the schedule tab\n\n 2.\tClick on a track and then an event that you find interesting\n\n 3.\tClick the \"Add Event\" button\n\n4.\tGo to the \"SAVED EVENTS\" tab to see the event";
 
     static SharedPreferences prefs;
     static SharedPreferences.Editor editor;
 
-    static int totalStart=0;
+    static List<String> properDateList = new ArrayList<>();
 
     public static boolean eventsEquals(Events e1, Events e2){
         if((e1.STime==e2.STime) && (e1.speaker.equals(e2.speaker)) && (e1.subject.equals(e2.subject)) && e1.date==e2.date){
@@ -64,8 +64,44 @@ public class Tab2 extends Fragment {
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.tab2, container, false);
+
+        eventsView = (ListView) rootView.findViewById(R.id.eventsView);
+
+        eventsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                popChoice=position;
+                for(int x=0; x<prefs.getInt("customizableListSize", 0); x++){
+                    if(findEvents(list.get(prefs.getInt(String.valueOf(x), 0)), customizableList)>-1){
+                        continue;
+                    }
+                    else{
+                        customizableList.add(list.get(prefs.getInt(String.valueOf(x), 0)));
+                    }
+                }
+                startActivity(new Intent(getActivity(), PopTabCustomizable.class));
+            }
+        });
+
+        return rootView;
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
+
+        properDateList.clear();
+
+        for(long i:dateList){
+            properDateList.add(changeDate(i));
+        }
+
+        Collections.sort(properDateList);
+
+        datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
+        eventsView.setAdapter(datesAdapter);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();
@@ -80,52 +116,6 @@ public class Tab2 extends Fragment {
             editor.apply();
         }*/
 
-        if(totalStart==1){
-            for(int x=0; x<prefs.getInt("customizableListSize", 0); x++){
-                if(findEvents(list.get(prefs.getInt(String.valueOf(x), 0)), customizableList)>-1){
-                    continue;
-                }
-                else{
-                    customizableList.add(list.get(prefs.getInt(String.valueOf(x), 0)));
-                }
-            }
-        }
-
-
         Collections.sort(customizableList, new Tab3.CompareEvents());
-
-        if(customizableList.size()!=0){
-            helper.setText("");
-            helperIntro.setText("");
-        }
-        else{
-            helper.setText(howToAdd);
-            helperIntro.setText(intro);
-        }
-
-        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, customizableList);
-        eventsView.setAdapter(adapter);
-
-        totalStart++;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab2, container, false);
-
-        eventsView = (ListView) rootView.findViewById(R.id.eventsView);
-
-        eventsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                popChoice=position;
-                startActivity(new Intent(getActivity(), PopTab2.class));
-            }
-        });
-
-        helper = (TextView)rootView.findViewById(R.id.helperText);
-        helperIntro = (TextView)rootView.findViewById(R.id.helperIntro);
-
-        return rootView;
     }
 }

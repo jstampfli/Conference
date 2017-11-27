@@ -34,7 +34,7 @@ public class Events {
     String Lspacer = "                      ";
     String Sspacer = "   ";*/
 
-    String[] months = new String[]{
+    static String[] months = new String[]{
             "January",
             "February",
             "March",
@@ -132,7 +132,7 @@ public class Events {
         return time;
     }
 
-    public String changeDate(long x){
+    public static String changeDate(long x){
         String date = String.valueOf(x);
         char[] Cdate = date.toCharArray();
 
