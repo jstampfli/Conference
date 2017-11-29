@@ -37,6 +37,8 @@ public class Tab2 extends Fragment {
     static List<Events> customizableList = new ArrayList<>();
     static ArrayAdapter datesAdapter;
 
+    static int tab2Choice;
+
     static String intro = "To add and Event to this Page:";
     static String howToAdd = "\n1.\tGo to the schedule tab\n\n 2.\tClick on a track and then an event that you find interesting\n\n 3.\tClick the \"Add Event\" button\n\n4.\tGo to the \"SAVED EVENTS\" tab to see the event";
 
@@ -72,7 +74,7 @@ public class Tab2 extends Fragment {
         eventsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                popChoice=position;
+                tab2Choice=position;
                 for(int x=0; x<prefs.getInt("customizableListSize", 0); x++){
                     if(findEvents(list.get(prefs.getInt(String.valueOf(x), 0)), customizableList)>-1){
                         continue;

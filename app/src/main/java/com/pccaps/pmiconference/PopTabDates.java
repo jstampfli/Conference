@@ -32,7 +32,7 @@ public class PopTabDates extends Activity {
 
     static List<Events> datesTrack = new ArrayList<>();
 
-    static int eventChoice;
+    static int eventDateChoice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +51,11 @@ public class PopTabDates extends Activity {
 
         listView = (ListView) findViewById(R.id.listDates);
 
-        for(int i=0; i<list.size(); i++){
+        /*for(int i=0; i<list.size(); i++){
             if(list.get(i).date==dateList.get(popChoice)){
                 datesTrack.add(list.get(i));
             }
-        }
+        }*/
 
         adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
         listView.setAdapter(adapter);
@@ -63,7 +63,7 @@ public class PopTabDates extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                eventChoice=position;
+                eventDateChoice=position;
                 startActivity(new Intent(getApplicationContext(), PopTabEvents.class));
             }
         });

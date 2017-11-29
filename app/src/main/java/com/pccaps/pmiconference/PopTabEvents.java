@@ -13,7 +13,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.pccaps.pmiconference.PopTabDates.eventDateChoice;
 import static com.pccaps.pmiconference.R.layout.popupwindowevents;
+import static com.pccaps.pmiconference.Tab3.date;
+import static com.pccaps.pmiconference.Tab3.dateList;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.popChoice;
 import static com.pccaps.pmiconference.Tab3.trackList;
@@ -28,6 +31,7 @@ public class PopTabEvents extends Activity {
     ArrayAdapter<Events> adapter;
 
     static List<Events> eventsTrack = new ArrayList<>();
+    static List<Events> tempTrack = new ArrayList<>();
 
     static int eventChoice;
 
@@ -37,6 +41,7 @@ public class PopTabEvents extends Activity {
         setContentView(popupwindowevents);
 
         eventsTrack.clear();
+        tempTrack.clear();
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -50,7 +55,12 @@ public class PopTabEvents extends Activity {
 
         for(int i=0; i<list.size(); i++){
             if(list.get(i).tracks.equals(trackList.get(popChoice))){
-                eventsTrack.add(list.get(i));
+                tempTrack.add(list.get(i));
+            }
+        }
+        for(int i=0; i<tempTrack.size(); i++){
+            if(tempTrack.get(i).date==dateList.get(eventDateChoice)){
+                eventsTrack.add(tempTrack.get(i));
             }
         }
 
@@ -64,6 +74,7 @@ public class PopTabEvents extends Activity {
                 startActivity(new Intent(getApplicationContext(), PopTab3.class));
             }
         });
+
     }
 
 

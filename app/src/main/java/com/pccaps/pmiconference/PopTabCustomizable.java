@@ -19,6 +19,7 @@ import static com.pccaps.pmiconference.R.layout.popupwindowevents;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.howToAdd;
 import static com.pccaps.pmiconference.Tab2.intro;
+import static com.pccaps.pmiconference.Tab2.tab2Choice;
 import static com.pccaps.pmiconference.Tab3.dateList;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.popChoice;
@@ -56,7 +57,7 @@ public class PopTabCustomizable extends Activity {
         listView = (ListView) findViewById(R.id.listDates);
 
         for(Events e : customizableList){
-            if(e.date==dateList.get(popChoice)){
+            if(e.date==dateList.get(tab2Choice)){
                 dateCustomizableList.add(e);
             }
         }
@@ -79,7 +80,7 @@ public class PopTabCustomizable extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                customizableChoice=position;
+                customizableChoice=customizableList.indexOf(dateCustomizableList.get(position));
                 startActivity(new Intent(getApplicationContext(), PopTab2.class));
             }
         });
