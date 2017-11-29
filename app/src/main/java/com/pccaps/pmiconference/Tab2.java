@@ -69,6 +69,8 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab2, container, false);
 
+        properDateList.clear();
+
         eventsView = (ListView) rootView.findViewById(R.id.eventsView);
 
         eventsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -87,15 +89,6 @@ public class Tab2 extends Fragment {
             }
         });
 
-        return rootView;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        properDateList.clear();
-
         for(long i:dateList){
             properDateList.add(changeDate(i));
         }
@@ -105,18 +98,15 @@ public class Tab2 extends Fragment {
         datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
         eventsView.setAdapter(datesAdapter);
 
+        return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();
-
-
-        /*if(!prefs.getBoolean("firstRun", true)) {
-            for (int i = 0; i < customizableList.size(); i++) {
-                editor.putInt(String.valueOf(i), findEvents(customizableList.get(i)));
-            }
-            editor.putInt("customizableListSize", customizableList.size());
-            editor.putBoolean("firstRun", false);
-            editor.apply();
-        }*/
 
         Collections.sort(customizableList, new Tab3.CompareEvents());
     }

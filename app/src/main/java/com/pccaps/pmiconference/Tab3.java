@@ -25,6 +25,7 @@ import java.util.List;
 import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.Tab2.datesAdapter;
 import static com.pccaps.pmiconference.Tab2.eventsView;
+import static com.pccaps.pmiconference.Tab2.properDateList;
 
 /**
  * Created by User1 on 9/30/2017.
@@ -34,8 +35,8 @@ public class Tab3 extends Fragment{
 
     //commit unversioned files
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference dRef = database.getReference("events");
+    static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    static DatabaseReference dRef = database.getReference("events");
 
     static String name;
     static long startTime;
@@ -47,6 +48,8 @@ public class Tab3 extends Fragment{
     static String tracks;
 
     static int countClear=0;
+
+    int totalStart=0;
 
     static Object[] data = new Object[9];
 
@@ -104,6 +107,8 @@ public class Tab3 extends Fragment{
                                 list.clear();
                             }
 
+                            properDateList.clear();
+
                             for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
                                 Object retrieve = snapshot.getValue();
                                 data[dataTemp]=retrieve;
@@ -130,6 +135,15 @@ public class Tab3 extends Fragment{
 
                             Collections.sort(trackList);
 
+                            for(long i:dateList){
+                                properDateList.add(changeDate(i));
+                            }
+
+                            Collections.sort(properDateList);
+
+                            datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
+                            eventsView.setAdapter(datesAdapter);
+
                             temp = new Events(name, startTime, endTime, location, description, subject, date, tracks);
                             list.add(temp);
 
@@ -137,8 +151,6 @@ public class Tab3 extends Fragment{
 
                             adapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, trackList);
                             listView.setAdapter(adapter);
-
-                            countClear++;
                         }
 
                         @Override
