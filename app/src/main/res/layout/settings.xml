@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/clearCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset My Schedule"
+        android:textSize="20dp"
+        android:layout_alignBaseline="@+id/clearCustomButton"
+        android:layout_alignBottom="@+id/clearCustomButton"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/clearCustomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:layout_marginLeft="50dp"
+        android:onClick="clearCustomList"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="35dp"
+        android:layout_marginTop="11dp" />
+
+    <TextView
+        android:id="@+id/alerts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/clearCustomButton"
+        android:layout_marginTop="49dp"
+        android:textSize="20dp"
+        android:text="Schedule Alerts" />
+
+    <Spinner
+        android:id="@+id/alertTimes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/alertTimesArray"
+        android:prompt="@string/alertPrompt"
+        android:layout_alignBaseline="@+id/alerts"
+        android:layout_alignBottom="@+id/alerts"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

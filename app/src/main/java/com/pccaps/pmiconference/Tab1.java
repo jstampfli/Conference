@@ -4,11 +4,13 @@ package com.pccaps.pmiconference;
  * Created by User1 on 9/30/2017.
  */
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ public class Tab1 extends Fragment{
 
     TextView pmi;
     ImageView logo;
+    Button settingsButton;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dRef = database.getReference("info");
@@ -36,6 +39,16 @@ public class Tab1 extends Fragment{
 
         logo = (ImageView) rootView.findViewById(R.id.logo);
 
+        settingsButton = (Button) rootView.findViewById(R.id.settings);
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent settingsPage = new Intent(getContext(), Settings.class);
+                startActivity(settingsPage);
+            }
+        });
+
         return rootView;
     }
 
@@ -45,6 +58,7 @@ public class Tab1 extends Fragment{
         dRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                pmi.setText("");
                 int i=0;
                 for(final DataSnapshot snapshot : dataSnapshot.getChildren() ){
                     if(i==0){

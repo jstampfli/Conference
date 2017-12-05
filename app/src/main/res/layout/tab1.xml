@@ -32,5 +32,13 @@
             android:layout_centerHorizontal="true"
             app:srcCompat="@drawable/pmi_logo" />
 
+        <Button
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pmiBackground"
+            android:layout_centerHorizontal="true"
+            android:text="Settings" />
+
     </RelativeLayout>
 </ScrollView>

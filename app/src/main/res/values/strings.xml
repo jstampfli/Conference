@@ -3,4 +3,15 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_description">Description</string>
+    <string name="alertPrompt">Choose An Alert Time</string>
+    <string-array name="alertTimesArray">
+        <item>Never</item>
+        <item>At Time of Event</item>
+        <item>5 minutes before</item>
+        <item>10 minutes before</item>
+        <item>30 minutes before</item>
+        <item>1 hour before</item>
+        <item>2 hours before</item>
+        <item>3 hours before</item>
+    </string-array>
 </resources>
