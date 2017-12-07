@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Are you sure you want to clear your list?"
+        android:textSize="20dp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/clearList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yes"
+        android:onClick="clearClick"
+        android:layout_below="@+id/textView"
+        android:layout_marginLeft="100dp"/>
+
+    <Button
+        android:id="@+id/keepList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No"
+        android:onClick="saveClick"
+        android:layout_below="@+id/textView"
+        android:layout_toEndOf="@+id/clearList"/>
+
+</RelativeLayout>

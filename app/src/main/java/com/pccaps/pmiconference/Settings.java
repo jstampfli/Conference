@@ -1,6 +1,7 @@
 package com.pccaps.pmiconference;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,6 +9,9 @@ import android.widget.Spinner;
 
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
+import static com.pccaps.pmiconference.Tab2.findEvents;
+import static com.pccaps.pmiconference.Tab2.prefs;
+import static com.pccaps.pmiconference.Tab3.list;
 
 /**
  * Created by jstampfli19 on 12/5/17.
@@ -16,6 +20,8 @@ import static com.pccaps.pmiconference.Tab2.editor;
 public class Settings extends Activity {
 
     Spinner alertArray;
+    static int globalPosition=0;
+    static String editorNotification = "notificationTime";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,11 +31,19 @@ public class Settings extends Activity {
 
         alertArray = (Spinner) findViewById(R.id.alertTimes);
 
+        alertArray.setSelection(prefs.getInt(editorNotification, globalPosition), true);
+
         alertArray.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
+                globalPosition=position;
+
+                editor.putInt(editorNotification, globalPosition);
+                editor.commit();
+
                 String selectedItem = parent.getItemAtPosition(position).toString();
+
                 if(selectedItem.equals("Never"))
                 {
 
@@ -47,14 +61,11 @@ public class Settings extends Activity {
             }
         });
     }
+
     public void clearCustomList(View view){
 
-        customizableList.clear();
-        editor.clear();
-        editor.commit();
-    }
+        startActivity(new Intent(getApplicationContext() ,clearCustomizableWarning.class));
 
-    public void addListenerOnSpinnerItemSelection(){
-
+        editor.putInt(editorNotification, globalPosition);
     }
 }

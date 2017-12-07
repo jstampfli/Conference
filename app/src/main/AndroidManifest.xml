@@ -24,6 +24,10 @@
         <activity android:name="com.pccaps.pmiconference.PopTabCustomizable"></activity>
         <activity android:name="com.pccaps.pmiconference.PopTabDates"></activity>
         <activity android:name="com.pccaps.pmiconference.Settings"></activity>
+        <activity
+            android:name="com.pccaps.pmiconference.clearCustomizableWarning"
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+        </activity>
     </application>
 
 </manifest>
