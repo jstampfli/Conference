@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Set;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -25,6 +26,8 @@ import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.eventsEquals;
 import static com.pccaps.pmiconference.Tab2.findEvents;
 import static com.pccaps.pmiconference.Tab2.prefs;
+import static com.pccaps.pmiconference.Tab3.amountPicked;
+import static com.pccaps.pmiconference.Tab3.dRef;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.name;
 import static com.pccaps.pmiconference.Tab3.popChoice;
@@ -91,6 +94,8 @@ public class PopTab3 extends Activity{
             editor.putInt("customizableListSize", customizableList.size());
             editor.putBoolean("firstRun", false);
             editor.apply();
+
+            //amountPicked++;
 
             //editor.clear();
             //editor.commit();

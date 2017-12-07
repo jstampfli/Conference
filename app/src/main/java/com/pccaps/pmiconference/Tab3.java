@@ -2,7 +2,6 @@ package com.pccaps.pmiconference;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,12 +45,13 @@ public class Tab3 extends Fragment{
     static String location;
     static String subject;
     static String tracks;
+    static long amountPicked;
 
     static int countClear=0;
 
     int totalStart=0;
 
-    static Object[] data = new Object[9];
+    static Object[] data = new Object[10];
 
     static int dataTemp=0;
 
@@ -115,14 +115,15 @@ public class Tab3 extends Fragment{
                                 dataTemp++;
                             }
                             dataTemp=0;
-                            name = (String) data[4];
-                            startTime = (long) data[7];
-                            endTime = (long) data[6];
-                            description = (String) data[1];
-                            date = (long) data[0];
-                            location = (String) data[3];
-                            subject = (String) data[5];
-                            tracks = (String) data[8];
+                            amountPicked = (long) data[0];
+                            name = (String) data[5];
+                            startTime = (long) data[8];
+                            endTime = (long) data[7];
+                            description = (String) data[2];
+                            date = (long) data[1];
+                            location = (String) data[4];
+                            subject = (String) data[6];
+                            tracks = (String) data[9];
 
                             if(!trackList.contains(tracks)){
                                 trackList.add(tracks);
