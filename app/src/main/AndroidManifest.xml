@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.pccaps.pmiconference.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -18,16 +18,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.pccaps.pmiconference.PopTab3"></activity>
-        <activity android:name="com.pccaps.pmiconference.PopTab2"></activity>
-        <activity android:name="com.pccaps.pmiconference.PopTabEvents"></activity>
-        <activity android:name="com.pccaps.pmiconference.PopTabCustomizable"></activity>
-        <activity android:name="com.pccaps.pmiconference.PopTabDates"></activity>
-        <activity android:name="com.pccaps.pmiconference.Settings"></activity>
+        <activity android:name=".PopTab3" />
+        <activity android:name=".PopTab2" />
+        <activity android:name=".PopTabEvents" />
+        <activity android:name=".PopTabCustomizable" />
+        <activity android:name=".PopTabDates" />
+        <activity android:name=".Settings" />
         <activity
-            android:name="com.pccaps.pmiconference.clearCustomizableWarning"
-            android:theme="@android:style/Theme.Holo.Light.Dialog">
-        </activity>
+            android:name=".clearCustomizableWarning"
+            android:theme="@android:style/Theme.Holo.Light.Dialog"></activity>
+        <activity
+            android:name=".PreferenceActivitySettings"
+            android:label="@string/title_activity_preference"></activity>
     </application>
 
 </manifest>

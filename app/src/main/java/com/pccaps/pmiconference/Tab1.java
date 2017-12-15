@@ -44,7 +44,7 @@ public class Tab1 extends Fragment{
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent settingsPage = new Intent(getContext(), Settings.class);
+                Intent settingsPage = new Intent(getContext(), PreferenceActivitySettings.class);
                 startActivity(settingsPage);
             }
         });

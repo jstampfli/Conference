@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Notifications">
+
+        <ListPreference
+            android:defaultValue="10"
+            android:entries="@array/alertTimesArray"
+            android:entryValues="@array/pref_sync_frequency_values"
+            android:key="list_preference_1"
+            android:title="Alert Times" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="General">
+
+        <Preference
+            android:title="Reset My Schedule"
+            android:key="@string/clearCustomizable">
+
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

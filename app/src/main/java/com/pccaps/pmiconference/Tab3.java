@@ -51,7 +51,7 @@ public class Tab3 extends Fragment{
 
     int totalStart=0;
 
-    static Object[] data = new Object[10];
+    static Object[] data = new Object[11];
 
     static int dataTemp=0;
 

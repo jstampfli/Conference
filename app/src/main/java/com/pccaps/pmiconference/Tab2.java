@@ -26,6 +26,7 @@ import static com.pccaps.pmiconference.Tab3.dateList;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.popChoice;
 import static com.pccaps.pmiconference.PopTabEvents.eventChoice;
+import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomList;
 
 /**
  * Created by User1 on 9/30/2017.
@@ -72,6 +73,16 @@ public class Tab2 extends Fragment {
         properDateList.clear();
 
         eventsView = (ListView) rootView.findViewById(R.id.eventsView);
+
+        if(userClearCustomList){
+            for (int i = 0; i < customizableList.size(); i++) {
+                editor.remove(String.valueOf(i));
+            }
+            customizableList.clear();
+            //editor.clear();
+            //editor.putInt(editorNotification, globalPosition);
+            editor.apply();
+        }
 
         eventsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

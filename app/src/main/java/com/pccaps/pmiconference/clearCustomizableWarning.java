@@ -25,7 +25,7 @@ import static com.pccaps.pmiconference.Tab2.editor;
 
 public class clearCustomizableWarning extends Activity {
     TextView textViewBlowup;
-    boolean userClearCustomList=false;
+    static boolean userClearCustomList=false;
 
     //Context context = Settings.class.get;
     String text = "List Cleared";
@@ -46,16 +46,27 @@ public class clearCustomizableWarning extends Activity {
         int height = 600;
 
         getWindow().setLayout(width, height);
+
+        if(userClearCustomList){
+            for (int i = 0; i < customizableList.size(); i++) {
+                editor.remove(String.valueOf(i));
+            }
+            customizableList.clear();
+            //editor.clear();
+            //editor.putInt(editorNotification, globalPosition);
+            editor.apply();
+        }
     }
 
     public void clearClick(View view){
         userClearCustomList=true;
-        if(userClearCustomList){
-            customizableList.clear();
-            editor.clear();
-            editor.putInt(editorNotification, globalPosition);
-            editor.commit();
+        /*for (int i = 0; i < customizableList.size(); i++) {
+            editor.remove(String.valueOf(i));
         }
+        customizableList.clear();
+        //editor.clear();
+        //editor.putInt(editorNotification, globalPosition);
+        editor.commit();*/
         this.finish();
     }
     public void saveClick(View view){

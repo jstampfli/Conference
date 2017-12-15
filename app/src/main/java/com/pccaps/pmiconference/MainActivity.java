@@ -16,6 +16,10 @@ import android.view.MenuItem;
 
 import com.google.gson.Gson;
 
+import static com.pccaps.pmiconference.Tab2.customizableList;
+import static com.pccaps.pmiconference.Tab2.editor;
+import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomList;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -49,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-
     }
 
 

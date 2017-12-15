@@ -3,6 +3,7 @@ package com.pccaps.pmiconference;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -17,7 +18,7 @@ import static com.pccaps.pmiconference.Tab3.list;
  * Created by jstampfli19 on 12/5/17.
  */
 
-public class Settings extends Activity {
+public class Settings extends PreferenceActivity {
 
     Spinner alertArray;
     static int globalPosition=0;

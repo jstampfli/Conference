@@ -44,6 +44,10 @@ public class PopTab2 extends Activity {
     }
     public void removeEventsClick(View view){
         //Events temp = new Events(customizableList.get(popChoice).speaker, customizableList.get(popChoice).STime, customizableList.get(popChoice).ETime, customizableList.get(popChoice).P, customizableList.get(popChoice).D, customizableList.get(popChoice).subject, customizableList.get(popChoice).date);
+        for (int i = 0; i < customizableList.size(); i++) {
+            editor.remove(String.valueOf(i));
+        }
+
         customizableList.remove(customizableList.get(customizableChoice));
 
         for (int i = 0; i < customizableList.size(); i++) {
