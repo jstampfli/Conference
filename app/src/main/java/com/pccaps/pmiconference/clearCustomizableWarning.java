@@ -18,6 +18,7 @@ import static com.pccaps.pmiconference.Settings.editorNotification;
 import static com.pccaps.pmiconference.Settings.globalPosition;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
+import static com.pccaps.pmiconference.Tab2.prefs;
 
 /**
  * Created by jstampfli19 on 12/7/17.
@@ -46,27 +47,10 @@ public class clearCustomizableWarning extends Activity {
         int height = 600;
 
         getWindow().setLayout(width, height);
-
-        if(userClearCustomList){
-            for (int i = 0; i < customizableList.size(); i++) {
-                editor.remove(String.valueOf(i));
-            }
-            customizableList.clear();
-            //editor.clear();
-            //editor.putInt(editorNotification, globalPosition);
-            editor.apply();
-        }
     }
 
     public void clearClick(View view){
         userClearCustomList=true;
-        /*for (int i = 0; i < customizableList.size(); i++) {
-            editor.remove(String.valueOf(i));
-        }
-        customizableList.clear();
-        //editor.clear();
-        //editor.putInt(editorNotification, globalPosition);
-        editor.commit();*/
         this.finish();
     }
     public void saveClick(View view){

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.app.Fragment;
@@ -13,6 +14,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
 
 import com.google.gson.Gson;
 
@@ -32,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    final int[] icons = new int[]{
+            R.drawable.icon_about,
+            R.drawable.icon_schedule,
+            R.drawable.icon_tracks
+    };
+
+    View decorView;
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -43,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        decorView = getWindow().getDecorView();
+
+        /*decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        //| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        //| View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE
+        );*/
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -53,9 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        tabLayout.getTabAt(0).setIcon(icons[1]);
+        tabLayout.getTabAt(1).setIcon(icons[2]);
+        tabLayout.getTabAt(2).setIcon(icons[0]);
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -113,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return "My Schedule";
                 case 1:
-                    return "Schedule";
+                    return "Tracks";
                 case 2:
                     return "About";
             }

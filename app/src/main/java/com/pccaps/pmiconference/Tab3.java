@@ -89,6 +89,9 @@ public class Tab3 extends Fragment{
     public void onStart() {
         super.onStart();
 
+        datesAdapter = new ArrayAdapter<>(getActivity(), R.layout.custom_list, android.R.id.text1, properDateList);
+        eventsView.setAdapter(datesAdapter);
+
         dRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

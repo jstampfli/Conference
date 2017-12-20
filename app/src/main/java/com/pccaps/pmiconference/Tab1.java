@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.pccaps.pmiconference.Tab2.properDateList;
+
 public class Tab1 extends Fragment{
 
     TextView pmi;
@@ -55,16 +57,17 @@ public class Tab1 extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+        pmi.setText("");
+        pmi.setText(properDateList.get(0)+" - "+properDateList.get(properDateList.size()-1)+"\n\n");
         dRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                pmi.setText("");
                 int i=0;
                 for(final DataSnapshot snapshot : dataSnapshot.getChildren() ){
-                    if(i==0){
+                    /*if(i==0){
                         i++;
                         continue;
-                    }
+                    }*/
                     pmi.setText(pmi.getText()+String.valueOf(snapshot.getValue())+"\n\n");
                 }
             }

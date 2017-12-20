@@ -74,6 +74,9 @@ public class Tab2 extends Fragment {
 
         eventsView = (ListView) rootView.findViewById(R.id.eventsView);
 
+        datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
+        eventsView.setAdapter(datesAdapter);
+
         if(userClearCustomList){
             for (int i = 0; i < customizableList.size(); i++) {
                 editor.remove(String.valueOf(i));
@@ -88,6 +91,14 @@ public class Tab2 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 tab2Choice=position;
+                if(userClearCustomList){
+                    for (int i = 0; i < prefs.getInt("customizableListSize", 0); i++) {
+                        editor.remove(String.valueOf(i));
+                    }
+                    customizableList.clear();
+                    editor.putInt("customizableListSize", 0);
+                    editor.commit();
+                }
                 for(int x=0; x<prefs.getInt("customizableListSize", 0); x++){
                     if(findEvents(list.get(prefs.getInt(String.valueOf(x), 0)), customizableList)>-1){
                         continue;
@@ -106,15 +117,14 @@ public class Tab2 extends Fragment {
 
         Collections.sort(properDateList);
 
-        datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
-        eventsView.setAdapter(datesAdapter);
-
         return rootView;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+        eventsView.setAdapter(datesAdapter);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();

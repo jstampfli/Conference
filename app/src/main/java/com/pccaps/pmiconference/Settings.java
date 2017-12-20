@@ -13,6 +13,7 @@ import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.findEvents;
 import static com.pccaps.pmiconference.Tab2.prefs;
 import static com.pccaps.pmiconference.Tab3.list;
+import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomList;
 
 /**
  * Created by jstampfli19 on 12/5/17.

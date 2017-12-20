@@ -24,6 +24,7 @@ import static com.pccaps.pmiconference.Tab3.dateList;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.popChoice;
 import static com.pccaps.pmiconference.Tab3.trackList;
+import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomList;
 
 /**
  * Created by jstampfli19 on 11/14/17.
@@ -56,9 +57,11 @@ public class PopTabCustomizable extends Activity {
 
         listView = (ListView) findViewById(R.id.listDates);
 
-        for(Events e : customizableList){
-            if(e.date==dateList.get(tab2Choice)){
-                dateCustomizableList.add(e);
+        if(customizableList.size()>0){
+            for(Events e : customizableList){
+                if(e.date==dateList.get(tab2Choice)){
+                    dateCustomizableList.add(e);
+                }
             }
         }
 
