@@ -5,6 +5,7 @@
     <string name="title_activity_description">Description</string>
     <string name="alertPrompt">Choose An Alert Time</string>
     <string name="clearCustomizable">clearCustomizable</string>
+    <string name="alertTimes">alertTimes</string>
     <string-array name="alertTimesArray">
         <item>Never</item>
         <item>At Time of Event</item>

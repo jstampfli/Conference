@@ -31,6 +31,11 @@
         <activity
             android:name=".PreferenceActivitySettings"
             android:label="@string/title_activity_preference"></activity>
+        <receiver android:name="ratingListener">
+            <intent-filter>
+                <action android:name="ratingGiven"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

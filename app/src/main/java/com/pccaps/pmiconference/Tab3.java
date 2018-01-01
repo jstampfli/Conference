@@ -25,6 +25,7 @@ import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.Tab2.datesAdapter;
 import static com.pccaps.pmiconference.Tab2.eventsView;
 import static com.pccaps.pmiconference.Tab2.properDateList;
+import static com.pccaps.pmiconference.Tab2.ratedEvent;
 
 /**
  * Created by User1 on 9/30/2017.
@@ -51,7 +52,13 @@ public class Tab3 extends Fragment{
 
     int totalStart=0;
 
-    static Object[] data = new Object[11];
+    static Object[] data = new Object[12];
+
+    static List<String> ratedName = new ArrayList<>();
+    static List<Long> ratedDate = new ArrayList<>();
+    static List<Long> ratedSTime = new ArrayList<>();
+    static List<String> childrenValues = new ArrayList<>();
+
 
     static int dataTemp=0;
 
@@ -99,6 +106,9 @@ public class Tab3 extends Fragment{
                 list.clear();
                 trackList.clear();
                 dateList.clear();
+                ratedDate.clear();
+                ratedSTime.clear();
+                ratedName.clear();
 
                 for(final DataSnapshot snapshot : dataSnapshot.getChildren() ){
 
@@ -120,13 +130,18 @@ public class Tab3 extends Fragment{
                             dataTemp=0;
                             amountPicked = (long) data[0];
                             name = (String) data[5];
-                            startTime = (long) data[8];
-                            endTime = (long) data[7];
+                            startTime = (long) data[9];
+                            endTime = (long) data[8];
                             description = (String) data[2];
                             date = (long) data[1];
                             location = (String) data[4];
-                            subject = (String) data[6];
-                            tracks = (String) data[9];
+                            subject = (String) data[7];
+                            tracks = (String) data[10];
+
+                            ratedName.add(name);
+                            ratedDate.add(date);
+                            ratedSTime.add(startTime);
+                            childrenValues.add(snapshot.getKey().toString());
 
                             if(!trackList.contains(tracks)){
                                 trackList.add(tracks);

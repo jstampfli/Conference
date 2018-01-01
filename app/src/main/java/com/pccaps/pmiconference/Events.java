@@ -27,8 +27,8 @@ public class Events {
 
     String Adate;
 
-    Boolean am = false;
-    Boolean pm = false;
+    static Boolean am = false;
+    static Boolean pm = false;
 
     /*String spacer = "  ";
     String Lspacer = "                      ";
@@ -89,7 +89,7 @@ public class Events {
         //String leftSide = AsTime+"\nto\n"+AeTime;
         return evenSpace(AsTime)+subject+"\n"+evenSpace("to")+"  "+P+"\n"+evenSpace(AeTime)+speaker;
     }
-    public String changeTime(long x){
+    public static String changeTime(long x){
         String time = String.valueOf(x);
         char[] eTime = time.toCharArray();
         List<Character> LeTime = new ArrayList<>();

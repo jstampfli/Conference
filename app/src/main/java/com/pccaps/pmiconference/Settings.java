@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.findEvents;
@@ -19,11 +22,15 @@ import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomL
  * Created by jstampfli19 on 12/5/17.
  */
 
-public class Settings extends PreferenceActivity {
+public class Settings extends Activity {
 
     Spinner alertArray;
     static int globalPosition=0;
     static String editorNotification = "notificationTime";
+
+    static String selectedItem;
+    static int selectedInt;
+    static int state=prefs.getInt("notificationState", 0);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,17 +51,38 @@ public class Settings extends PreferenceActivity {
                 editor.putInt(editorNotification, globalPosition);
                 editor.commit();
 
-                String selectedItem = parent.getItemAtPosition(position).toString();
+                selectedItem = parent.getItemAtPosition(position).toString();
 
                 if(selectedItem.equals("Never"))
                 {
-
+                    state=0;
+                    editor.putInt("notificationState", state);
+                    editor.apply();
                 }
                 else if(selectedItem.equals("At Time of Event")){
-
+                    state=1;
+                    editor.putInt("notificationState", state);
+                    editor.apply();
                 }
                 else{
-
+                    state=2;
+                    editor.putInt("notificationState", state);
+                    editor.apply();
+                    char[] temp = selectedItem.toCharArray();
+                    List<Character> nums= new ArrayList<>();
+                    String finalTemp="";
+                    for(char e : temp){
+                        if(e==' '){
+                            break;
+                        }
+                        else{
+                            nums.add(e);
+                        }
+                    }
+                    for(char c : nums){
+                        finalTemp.concat(String.valueOf(c));
+                    }
+                    selectedInt=Integer.parseInt(finalTemp);
                 }
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent)

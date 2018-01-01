@@ -5,10 +5,10 @@
         android:title="Notifications">
 
         <ListPreference
-            android:defaultValue="10"
+            android:defaultValue="1"
             android:entries="@array/alertTimesArray"
-            android:entryValues="@array/pref_sync_frequency_values"
-            android:key="list_preference_1"
+            android:entryValues="@array/alertTimesArray"
+            android:key="@string/alertTimes"
             android:title="Alert Times" />
 
     </PreferenceCategory>

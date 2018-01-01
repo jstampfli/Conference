@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="64dp">
+
+    <ImageView
+        android:id="@+id/pmiLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pmi_logo"
+        android:layout_toLeftOf="@+id/text" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:text="What did you think of the Event that just Ended?"/>
+
+    <Button
+        android:id="@+id/rate1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:layout_below="@+id/text"
+        android:layout_toEndOf="@+id/pmiLogo" />
+    <Button
+        android:id="@+id/rate2"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="2"
+        android:layout_below="@+id/text"
+        android:layout_toEndOf="@+id/rate1"/>
+    <Button
+        android:id="@+id/rate3"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:layout_below="@+id/text"
+        android:layout_toEndOf="@+id/rate2"/>
+    <Button
+        android:id="@+id/rate4"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="4"
+        android:layout_below="@+id/text"
+        android:layout_toEndOf="@+id/rate3"/>
+    <Button
+        android:id="@+id/rate5"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:layout_below="@+id/text"
+        android:layout_toEndOf="@+id/rate4"/>
+
+</RelativeLayout>

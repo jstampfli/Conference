@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +28,7 @@ import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.eventsEquals;
 import static com.pccaps.pmiconference.Tab2.findEvents;
 import static com.pccaps.pmiconference.Tab2.prefs;
+import static com.pccaps.pmiconference.Tab2.startTimes;
 import static com.pccaps.pmiconference.Tab3.amountPicked;
 import static com.pccaps.pmiconference.Tab3.dRef;
 import static com.pccaps.pmiconference.Tab3.list;
@@ -94,11 +97,6 @@ public class PopTab3 extends Activity{
             editor.putInt("customizableListSize", customizableList.size());
             editor.putBoolean("firstRun", false);
             editor.apply();
-
-            //amountPicked++;
-
-            //editor.clear();
-            //editor.commit();
         }
         else{
             if(!(toast.getView().isShown())){
@@ -106,5 +104,37 @@ public class PopTab3 extends Activity{
                 toast.show();
             }
         }
+    }
+
+    public static int convertTimes(int time){
+        int finished;
+        String sTime = String.valueOf(time);
+        char[] aTime = sTime.toCharArray();
+        List<Character> fTime = new ArrayList<>();
+        for(int i=0; i<aTime.length; i++){
+            fTime.add(aTime[i]);
+        }
+        if(aTime.length==3){
+            finished=60*Integer.parseInt(String.valueOf(fTime.get(0)));
+            fTime.remove(0);
+            for(int i=0; i<fTime.size(); i++){
+                if(i==0){
+                    finished+=10*Integer.parseInt(String.valueOf(fTime.get(i)));
+                }
+                else{
+                    finished+=Integer.parseInt(String.valueOf(fTime.get(i)));
+                }
+            }
+        }
+        else{
+            finished=60*(10*(Integer.parseInt(String.valueOf(fTime.get(0))))+Integer.parseInt(String.valueOf(fTime.get(1))));
+            fTime.remove(0);
+            fTime.remove(0);
+            for(int i=0; i<fTime.size(); i++){
+                finished+=Integer.parseInt(String.valueOf(fTime.get(i)));
+            }
+        }
+
+        return finished;
     }
 }

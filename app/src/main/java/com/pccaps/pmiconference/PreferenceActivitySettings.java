@@ -4,6 +4,7 @@ package com.pccaps.pmiconference;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -12,19 +13,23 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 
 import com.pccaps.pmiconference.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
+import static com.pccaps.pmiconference.Tab2.prefs;
 import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomList;
 
 /**
@@ -42,10 +47,16 @@ import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomL
 public class PreferenceActivitySettings extends AppCompatPreferenceActivity {
 
     Preference button;
+    ListPreference list;
+
+    static String selectedItem;
+    static int selectedInt=0;
+    static int state=prefs.getInt("notificationState", 0);
+    static int specialHour;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onStart() {
+        super.onStart();
         addPreferencesFromResource(R.xml.settings_preference);
 
         button=findPreference(getString(R.string.clearCustomizable));
@@ -57,6 +68,58 @@ public class PreferenceActivitySettings extends AppCompatPreferenceActivity {
                 return true;
             }
         });
+        list=(ListPreference) findPreference("alertTimes");
+        selectedItem=list.getValue();
+        if(selectedItem.equals("Never"))
+        {
+            state=0;
+            editor.putInt("notificationState", state);
+            editor.apply();
+        }
+        else if(selectedItem.equals("At Time of Event")){
+            state=1;
+            selectedInt=0;
+            editor.putInt("notificationState", state);
+            editor.putInt("prefTime", selectedInt);
+            editor.apply();
+        }
+        else{
+            state=2;
+            editor.putInt("notificationState", state);
+            editor.apply();
+
+            char[] temp = selectedItem.toCharArray();
+            List<Character> nums= new ArrayList<>();
+            String finalTemp="";
+
+            for(int i=0; i<temp.length; i++){
+                if(temp[i] == ' '){
+                    continue;
+                }
+                else if(temp[i]== 'h'){
+                    specialHour = 60*Integer.parseInt(String.valueOf(nums.get(0)));
+                    break;
+                }
+                else if(temp[i]=='m'){
+                    specialHour=0;
+                    break;
+                }
+                else{
+                    nums.add(temp[i]);
+                }
+            }
+            for(char c : nums){
+                finalTemp+=(String.valueOf(c));
+            }
+            if(specialHour==0){
+                selectedInt=Integer.parseInt(finalTemp);
+            }
+            else{
+                selectedInt=specialHour;
+            }
+            editor.putInt("prefTime", selectedInt);
+            editor.apply();
+        }
     }
 
 
@@ -64,8 +127,8 @@ public class PreferenceActivitySettings extends AppCompatPreferenceActivity {
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
-     */
-    /*private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
+
+    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
