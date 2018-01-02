@@ -23,7 +23,9 @@ import java.util.List;
 
 import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.Tab2.datesAdapter;
+import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.eventsView;
+import static com.pccaps.pmiconference.Tab2.prefs;
 import static com.pccaps.pmiconference.Tab2.properDateList;
 import static com.pccaps.pmiconference.Tab2.ratedEvent;
 
@@ -59,6 +61,7 @@ public class Tab3 extends Fragment{
     static List<Long> ratedSTime = new ArrayList<>();
     static List<String> childrenValues = new ArrayList<>();
 
+    static int ratingsCount = 0;
 
     static int dataTemp=0;
 
@@ -73,6 +76,8 @@ public class Tab3 extends Fragment{
     static List<Long> dateList = new ArrayList<>();
 
     ArrayAdapter<String> adapter;
+
+    static List<Integer> allRatings = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -109,6 +114,8 @@ public class Tab3 extends Fragment{
                 ratedDate.clear();
                 ratedSTime.clear();
                 ratedName.clear();
+                allRatings.clear();
+                ratingsCount=0;
 
                 for(final DataSnapshot snapshot : dataSnapshot.getChildren() ){
 
@@ -121,9 +128,18 @@ public class Tab3 extends Fragment{
                             }
 
                             properDateList.clear();
+                            ratingsCount=0;
 
                             for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
                                 Object retrieve = snapshot.getValue();
+                                if(String.valueOf(snapshot.getKey()).equals("ratings")){
+                                    for(int i=0; i<(int)snapshot.getChildrenCount(); i++){
+                                        ratingsCount++;
+                                        editor.putInt("ratingNum", ratingsCount);
+                                        editor.apply();
+                                    }
+                                    allRatings.add(ratingsCount);
+                                }
                                 data[dataTemp]=retrieve;
                                 dataTemp++;
                             }

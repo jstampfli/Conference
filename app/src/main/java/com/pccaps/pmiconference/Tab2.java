@@ -179,7 +179,9 @@ public class Tab2 extends Fragment {
         });
 
         for(long i:dateList){
-            properDateList.add(changeDate(i));
+
+                properDateList.add(changeDate(i));
+
         }
 
         Collections.sort(properDateList);

@@ -20,7 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.Tab2.properDateList;
+import static com.pccaps.pmiconference.Tab3.list;
 
 public class Tab1 extends Fragment{
 
@@ -58,7 +63,11 @@ public class Tab1 extends Fragment{
     public void onStart() {
         super.onStart();
         pmi.setText("");
-        pmi.setText(properDateList.get(0)+" - "+properDateList.get(properDateList.size()-1)+"\n\n");
+        List<String> datesRange = new ArrayList<>();
+        for(Events e:list){
+            datesRange.add(changeDate(e.date));
+        }
+        pmi.setText(datesRange.get(0)+" - "+datesRange.get(datesRange.size()-1)+"\n\n");
         dRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
