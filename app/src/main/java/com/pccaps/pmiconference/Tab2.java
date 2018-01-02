@@ -280,12 +280,13 @@ public class Tab2 extends Fragment {
                                             Intent notification_intent = new Intent(getContext(), Tab2.class);
                                             PendingIntent pendingNotification = PendingIntent.getActivity(getContext(), 0, notification_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                                            remoteViews.setTextViewText(R.id.text, "Please Rate the Event you watched at "+changeTime(e.getSTime())+", "+changeDate(e.getDate()));
+                                            remoteViews.setTextViewText(R.id.text, "Please rate the event you watched at "+changeTime(e.getSTime())+", "+changeDate(e.getDate())+".");
+
 
                                             postNotification = new NotificationCompat.Builder(getContext());
                                             postNotification.setSmallIcon(R.drawable.pmi_logo)
                                                     .setAutoCancel(true)
-                                                    .setCustomContentView(remoteViews)
+                                                    .setCustomBigContentView(remoteViews)
                                                     .setContentIntent(pendingNotification);
 
                                             NotificationManager manager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
