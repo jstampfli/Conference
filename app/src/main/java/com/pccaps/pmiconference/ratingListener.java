@@ -59,6 +59,9 @@ public class ratingListener extends BroadcastReceiver {
                 ratingValue=allRatings.get(i);
             }
         }
+        if(ratingValue==1){
+            databaseReference.child("events").child(eventChild).child("ratings").child("placeHolder").setValue("false");
+        }
 
         if(intent.getIntExtra("id", 0)==385921){
             rating = new rating("", 1);
