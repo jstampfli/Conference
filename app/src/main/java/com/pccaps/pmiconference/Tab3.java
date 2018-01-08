@@ -1,8 +1,12 @@
 package com.pccaps.pmiconference;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +20,30 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import static com.pccaps.pmiconference.Events.changeDate;
+import static com.pccaps.pmiconference.Events.changeTime;
+import static com.pccaps.pmiconference.PopTab3.convertTimes;
+import static com.pccaps.pmiconference.PreferenceActivitySettings.state;
+import static com.pccaps.pmiconference.Tab2.IDA;
+import static com.pccaps.pmiconference.Tab2.IDB;
+import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.datesAdapter;
 import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.eventsView;
+import static com.pccaps.pmiconference.Tab2.postNotification;
+import static com.pccaps.pmiconference.Tab2.preNotification;
+import static com.pccaps.pmiconference.Tab2.prefTime;
 import static com.pccaps.pmiconference.Tab2.prefs;
 import static com.pccaps.pmiconference.Tab2.properDateList;
 import static com.pccaps.pmiconference.Tab2.ratedEvent;
+import static com.pccaps.pmiconference.Tab2.remoteViews;
 
 /**
  * Created by User1 on 9/30/2017.
@@ -102,6 +118,111 @@ public class Tab3 extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+
+        Thread t = new Thread(){
+            @Override
+            public void run(){
+                try{
+                    Thread.sleep(1000);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Calendar cal = Calendar.getInstance();
+
+                            SimpleDateFormat sdf = new SimpleDateFormat("HHmmss");
+                            SimpleDateFormat date = new SimpleDateFormat("YYMMDD");
+
+                            String fDate = String.valueOf(date.format(cal.getTime()));
+                            String sDate = fDate.substring(2);
+                            char[] tDate = sDate.toCharArray();
+                            String tempDate="";
+
+                            String fTime = String.valueOf(sdf.format(cal.getTime()));
+                            String sTime = fTime.substring(0, 4);
+                            char[] tTime = sTime.toCharArray();
+
+                            int properTime=0;
+                            int properDate=0;
+
+                            for(int i=0; i<tDate.length; i++){
+                                if(tDate[i]=='0' && i==0){
+                                    continue;
+                                }
+                                tempDate+=String.valueOf(tDate[i]);
+                            }
+                            properDate=Integer.parseInt(tempDate);
+
+                            for(int i=0; i<tTime.length; i++){
+                                if(i%2==0){
+                                    if(i==0){
+                                        properTime+=600*Integer.parseInt(String.valueOf(tTime[i]));
+                                    }
+                                    else{
+                                        properTime+=10*Integer.parseInt(String.valueOf(tTime[i]));
+                                    }
+                                }
+                                else{
+                                    if(i==1){
+                                        properTime+=60*Integer.parseInt(String.valueOf(tTime[i]));
+                                    }
+                                    else{
+                                        properTime+=Integer.parseInt(String.valueOf(tTime[i]));
+                                    }
+                                }
+                            }
+                            if(state==0){
+
+                            }
+                            else{
+                                prefTime=prefs.getInt("prefTime", 10);
+
+                                for(Events e:customizableList){
+                                    if(e.getDate()==properDate){
+                                        int sTemp = convertTimes(e.getSTime());
+                                        int eTemp = convertTimes((int)e.ETime);
+                                        if(sTemp-properTime<=prefTime && sTemp-properTime>0){
+                                            preNotification.setSmallIcon(R.mipmap.pmi_launcher);
+                                            preNotification.setTicker("An Event is Starting");
+                                            preNotification.setWhen(System.currentTimeMillis());
+                                            preNotification.setContentTitle("One of Your Events is Starting Soon");
+                                            preNotification.setContentText("You have an event starting in "+ String.valueOf(sTemp-properTime) + " minutes.");
+
+                                            Intent intent = new Intent(getContext(), Tab2.class);
+                                            PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                            preNotification.setContentIntent(pendingIntent);
+
+                                            NotificationManager manager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                                            manager.notify(IDB, preNotification.build());
+                                        }
+                                        else if(properTime>=eTemp && properTime-eTemp<=60){
+                                            Intent notification_intent = new Intent(getContext(), Tab2.class);
+                                            PendingIntent pendingNotification = PendingIntent.getActivity(getContext(), 0, notification_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                                            remoteViews.setTextViewText(R.id.text, "Please rate the event you watched at "+changeTime(e.getSTime())+", "+changeDate(e.getDate())+".");
+
+
+                                            postNotification = new NotificationCompat.Builder(getContext());
+                                            postNotification.setSmallIcon(R.drawable.pmi_logo)
+                                                    .setAutoCancel(true)
+                                                    .setCustomBigContentView(remoteViews)
+                                                    .setContentIntent(pendingNotification);
+
+                                            NotificationManager manager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                                            manager.notify(IDA, postNotification.build());
+
+                                            ratedEvent = new Events(e.speaker, e.STime, e.ETime, e.P, e.D, e.subject, e.date, e.tracks);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }catch(InterruptedException e){
+
+                }
+            }
+        };
+        t.start();
 
         datesAdapter = new ArrayAdapter<>(getActivity(), R.layout.custom_list, android.R.id.text1, properDateList);
         eventsView.setAdapter(datesAdapter);

@@ -72,18 +72,18 @@ public class Tab2 extends Fragment {
 
     static List<Integer> startTimes = new ArrayList<>();
 
-    NotificationCompat.Builder preNotification;
-    private static final int IDB=1234;
+    static NotificationCompat.Builder preNotification;
+    static final int IDB=1234;
 
-    NotificationCompat.Builder postNotification;
-    private static final int IDA=3489675;
-    private static final int ID1=385921;
-    private static final int ID2=385922;
-    private static final int ID3=385923;
-    private static final int ID4=385924;
-    private static final int ID5=385925;
+    static NotificationCompat.Builder postNotification;
+    static final int IDA=3489675;
+    static final int ID1=385921;
+    static final int ID2=385922;
+    static final int ID3=385923;
+    static final int ID4=385924;
+    static final int ID5=385925;
 
-    private RemoteViews remoteViews;
+    static RemoteViews remoteViews;
 
     static Events ratedEvent;
 
@@ -203,7 +203,7 @@ public class Tab2 extends Fragment {
         preNotification = new NotificationCompat.Builder(this.getContext());
         preNotification.setAutoCancel(true);
 
-        Thread t = new Thread(){
+        /*Thread t = new Thread(){
             @Override
             public void run(){
                 try{
@@ -306,6 +306,6 @@ public class Tab2 extends Fragment {
                 }
             }
         };
-        t.start();
+        t.start();*/
     }
 }
