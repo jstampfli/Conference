@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,7 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.*;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.MutableData;
+//import com.google.firebase.database.Transaction;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -28,13 +32,22 @@ import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.eventsEquals;
 import static com.pccaps.pmiconference.Tab2.findEvents;
 import static com.pccaps.pmiconference.Tab2.prefs;
+import static com.pccaps.pmiconference.Tab2.ratedEvent;
 import static com.pccaps.pmiconference.Tab2.startTimes;
+import static com.pccaps.pmiconference.Tab3.allCount;
+import static com.pccaps.pmiconference.Tab3.allRatings;
 import static com.pccaps.pmiconference.Tab3.amountPicked;
+import static com.pccaps.pmiconference.Tab3.childrenValues;
+import static com.pccaps.pmiconference.Tab3.countCount;
 import static com.pccaps.pmiconference.Tab3.dRef;
+import static com.pccaps.pmiconference.Tab3.database;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.name;
 import static com.pccaps.pmiconference.Tab3.popChoice;
 import static com.pccaps.pmiconference.PopTabEvents.eventChoice;
+import static com.pccaps.pmiconference.Tab3.ratedDate;
+import static com.pccaps.pmiconference.Tab3.ratedName;
+import static com.pccaps.pmiconference.Tab3.ratedSTime;
 import static com.pccaps.pmiconference.Tab3.startTime;
 
 /**
@@ -51,6 +64,9 @@ public class PopTab3 extends Activity{
     int duration = Toast.LENGTH_SHORT;
 
     Toast toast;
+
+    static String countChild;
+    static int countValue;
 
 
     @Override
@@ -90,6 +106,32 @@ public class PopTab3 extends Activity{
         if(check){
             customizableList.add(temp);
             toast.show();
+
+            for(int i=0; i<ratedName.size(); i++){
+                if(temp.speaker.equals(ratedName.get(i)) && temp.date==ratedDate.get(i) && temp.STime==ratedSTime.get(i)){
+                    countChild = childrenValues.get(i);
+                    countCount = allCount.get(i);
+                    countCount+=1;
+                    allCount.set(i, countCount);
+                }
+            }
+            DatabaseReference ref = database.getReference("events").child(countChild).child("count");
+            ref.setValue(countCount);
+            /*System.out.println("-----------------");
+            DatabaseReference ref = database.getReference("events").child(countChild).child("count");
+            ref.runTransaction(new Transaction.Handler() {
+                @Override
+                public Transaction.Result doTransaction(MutableData mutableData) {
+                    Count count = mutableData.getValue(Count.class);
+                    count.count += 1;
+                    mutableData.setValue(count);
+                    return Transaction.success(mutableData);
+                }
+
+                @Override
+                public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+                }
+            });*/
 
             for (int i = 0; i < customizableList.size(); i++) {
                 editor.putInt(String.valueOf(i), findEvents(customizableList.get(i), list));

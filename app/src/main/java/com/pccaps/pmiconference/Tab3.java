@@ -62,6 +62,7 @@ public class Tab3 extends Fragment{
     static List<String> childrenValues = new ArrayList<>();
 
     static int ratingsCount = 0;
+    static int countCount = 0;
 
     static int dataTemp=0;
 
@@ -78,6 +79,7 @@ public class Tab3 extends Fragment{
     ArrayAdapter<String> adapter;
 
     static List<Integer> allRatings = new ArrayList<>();
+    static List<Integer> allCount = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -139,6 +141,10 @@ public class Tab3 extends Fragment{
                                         editor.apply();
                                     }
                                     allRatings.add(ratingsCount);
+                                }
+                                if(String.valueOf(snapshot.getKey()).equals("count")){
+                                    countCount=Integer.parseInt(String.valueOf(retrieve));
+                                    allCount.add(countCount);
                                 }
                                 data[dataTemp]=retrieve;
                                 dataTemp++;

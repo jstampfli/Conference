@@ -14,11 +14,20 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+
 import static com.pccaps.pmiconference.Settings.editorNotification;
 import static com.pccaps.pmiconference.Settings.globalPosition;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.prefs;
+import static com.pccaps.pmiconference.Tab3.allCount;
+import static com.pccaps.pmiconference.Tab3.childrenValues;
+import static com.pccaps.pmiconference.Tab3.countCount;
+import static com.pccaps.pmiconference.Tab3.database;
+import static com.pccaps.pmiconference.Tab3.ratedDate;
+import static com.pccaps.pmiconference.Tab3.ratedName;
+import static com.pccaps.pmiconference.Tab3.ratedSTime;
 
 /**
  * Created by jstampfli19 on 12/7/17.
@@ -51,6 +60,19 @@ public class clearCustomizableWarning extends Activity {
 
     public void clearClick(View view){
         userClearCustomList=true;
+        String countChild="";
+        for(Events e: customizableList){
+            for(int i=0; i<ratedName.size(); i++){
+                if(e.speaker.equals(ratedName.get(i)) && e.date==ratedDate.get(i) && e.STime==ratedSTime.get(i)){
+                    countChild = childrenValues.get(i);
+                    countCount = allCount.get(i);
+                    countCount-=1;
+                    allCount.set(i, countCount);
+                }
+            }
+            DatabaseReference ref = database.getReference("events").child(countChild).child("count");
+            ref.setValue(countCount);
+        }
         this.finish();
     }
     public void saveClick(View view){

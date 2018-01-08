@@ -7,13 +7,22 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+
 import static com.pccaps.pmiconference.PopTabCustomizable.customizableChoice;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.findEvents;
 import static com.pccaps.pmiconference.Tab2.tab2Choice;
+import static com.pccaps.pmiconference.Tab3.allCount;
+import static com.pccaps.pmiconference.Tab3.childrenValues;
+import static com.pccaps.pmiconference.Tab3.countCount;
+import static com.pccaps.pmiconference.Tab3.database;
 import static com.pccaps.pmiconference.Tab3.list;
 import static com.pccaps.pmiconference.Tab3.popChoice;
+import static com.pccaps.pmiconference.Tab3.ratedDate;
+import static com.pccaps.pmiconference.Tab3.ratedName;
+import static com.pccaps.pmiconference.Tab3.ratedSTime;
 
 /**
  * Created by jstampfli19 on 11/8/17.
@@ -21,6 +30,8 @@ import static com.pccaps.pmiconference.Tab3.popChoice;
 
 public class PopTab2 extends Activity {
     TextView textViewBlowup;
+
+    static String removeCountChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -48,7 +59,20 @@ public class PopTab2 extends Activity {
             editor.remove(String.valueOf(i));
         }
 
+        for(int i=0; i<ratedName.size(); i++){
+            if(customizableList.get(customizableChoice).speaker.equals(ratedName.get(i)) && customizableList.get(customizableChoice).date==ratedDate.get(i) && customizableList.get(customizableChoice).STime==ratedSTime.get(i)){
+                removeCountChild = childrenValues.get(i);
+                countCount = allCount.get(i);
+                countCount-=1;
+                allCount.set(i,countCount);
+            }
+        }
+        DatabaseReference ref = database.getReference("events").child(removeCountChild).child("count");
+        ref.setValue(countCount);
+
         customizableList.remove(customizableList.get(customizableChoice));
+
+        /**/
 
         for (int i = 0; i < customizableList.size(); i++) {
             editor.putInt(String.valueOf(i), findEvents(customizableList.get(i), list));
