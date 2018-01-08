@@ -34,6 +34,7 @@ import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomL
 public class Tab1 extends Fragment{
 
     TextView pmi;
+    TextView pmiLink;
     ImageView logo;
     Button settingsButton;
 
@@ -47,6 +48,10 @@ public class Tab1 extends Fragment{
         pmi = (TextView) rootView.findViewById(R.id.pmiBackground);
         pmi.setTextSize(15);
         pmi.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+        pmiLink = (TextView) rootView.findViewById(R.id.pmiLink);
+        pmiLink.setTextSize(15);
+        pmiLink.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
         logo = (ImageView) rootView.findViewById(R.id.logo);
 
@@ -81,7 +86,7 @@ public class Tab1 extends Fragment{
         for(Events e:list){
             datesRange.add(changeDate(e.date));
         }
-        pmi.setText(datesRange.get(0)+" - "+datesRange.get(datesRange.size()-1)+"\n\n");
+        pmi.setText(datesRange.get(0)+" - "+datesRange.get(datesRange.size()-1));
         dRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -91,7 +96,12 @@ public class Tab1 extends Fragment{
                         i++;
                         continue;
                     }*/
-                    pmi.setText(pmi.getText()+String.valueOf(snapshot.getValue())+"\n\n");
+                    if(snapshot.getKey().equals("website")){
+                        pmiLink.setText(String.valueOf(snapshot.getValue()));
+                    }
+                    else{
+                        pmi.setText(pmi.getText()+String.valueOf(snapshot.getValue())+"\n\n");
+                    }
                 }
             }
 
@@ -100,5 +110,6 @@ public class Tab1 extends Fragment{
 
             }
         });
+        pmi.setText(pmi.getText()+"\n\nCreated By Jordan Stampfli\n\n");
     }
 }

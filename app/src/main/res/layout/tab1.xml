@@ -21,8 +21,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_below="@+id/logo"
+            android:layout_below="@+id/pmiLink"
             android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pmiLink"
+            android:linksClickable="true"
+            android:autoLink="web"
+            android:textColorLink="@color/lightBlue"
+            android:layout_below="@+id/logo"
+            android:layout_centerHorizontal="true"/>
 
         <ImageView
             android:id="@+id/logo"
