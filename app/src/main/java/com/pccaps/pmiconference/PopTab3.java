@@ -49,6 +49,7 @@ import static com.pccaps.pmiconference.Tab3.ratedDate;
 import static com.pccaps.pmiconference.Tab3.ratedName;
 import static com.pccaps.pmiconference.Tab3.ratedSTime;
 import static com.pccaps.pmiconference.Tab3.startTime;
+import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomList;
 
 /**
  * Created by User1 on 10/3/2017.
@@ -104,6 +105,7 @@ public class PopTab3 extends Activity{
             }
         }
         if(check){
+            userClearCustomList=false;
             customizableList.add(temp);
             toast.show();
 

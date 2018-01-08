@@ -144,7 +144,7 @@ public class Tab2 extends Fragment {
         datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
         eventsView.setAdapter(datesAdapter);
 
-        if(userClearCustomList){
+        /*if(userClearCustomList){
             for (int i = 0; i < customizableList.size(); i++) {
                 editor.remove(String.valueOf(i));
             }
@@ -152,20 +152,20 @@ public class Tab2 extends Fragment {
             //editor.clear();
             //editor.putInt(editorNotification, globalPosition);
             editor.apply();
-        }
+        }*/
 
         eventsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 tab2Choice=position;
-                if(userClearCustomList){
+                /*if(userClearCustomList){
                     for (int i = 0; i < prefs.getInt("customizableListSize", 0); i++) {
                         editor.remove(String.valueOf(i));
                     }
                     customizableList.clear();
                     editor.putInt("customizableListSize", 0);
                     editor.commit();
-                }
+                }*/
                 for(int x=0; x<prefs.getInt("customizableListSize", 0); x++){
                     if(findEvents(list.get(prefs.getInt(String.valueOf(x), 0)), customizableList)>-1){
                         continue;

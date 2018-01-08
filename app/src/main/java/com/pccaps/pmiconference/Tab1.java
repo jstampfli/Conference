@@ -24,8 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.pccaps.pmiconference.Events.changeDate;
+import static com.pccaps.pmiconference.Tab2.customizableList;
+import static com.pccaps.pmiconference.Tab2.editor;
+import static com.pccaps.pmiconference.Tab2.prefs;
 import static com.pccaps.pmiconference.Tab2.properDateList;
 import static com.pccaps.pmiconference.Tab3.list;
+import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomList;
 
 public class Tab1 extends Fragment{
 
@@ -62,6 +66,16 @@ public class Tab1 extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+
+        if(userClearCustomList){
+            for (int i = 0; i < prefs.getInt("customizableListSize", 0); i++) {
+                editor.remove(String.valueOf(i));
+            }
+            customizableList.clear();
+            editor.putInt("customizableListSize", 0);
+            editor.commit();
+        }
+
         pmi.setText("");
         List<String> datesRange = new ArrayList<>();
         for(Events e:list){
