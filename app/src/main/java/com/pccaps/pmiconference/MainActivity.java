@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.icon_tracks
     };
 
+    final String[] toolbarTitles = new String[]{
+            "My Events",
+            "Tracks",
+            "About"
+    };
+
+    static Toolbar toolbar;
+
     View decorView;
 
     /**
@@ -56,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         decorView = getWindow().getDecorView();
+        toolbar = (Toolbar) findViewById(R.id.toolbarMain);
+        toolbar.setTitle("My Events");
+        setSupportActionBar(toolbar);
 
         /*decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -79,6 +91,30 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(icons[1]);
         tabLayout.getTabAt(1).setIcon(icons[2]);
         tabLayout.getTabAt(2).setIcon(icons[0]);
+
+        mViewPager
+                .setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        // TODO Auto-generated method stub
+
+
+                        toolbar.setTitle(toolbarTitles[position]);
+                    }
+
+                    @Override
+                    public void onPageScrolled(int arg0, float arg1, int arg2) {
+                        // TODO Auto-generated method stub
+
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int pos) {
+                        // TODO Auto-generated method stub
+
+                    }
+                });
     }
 
     @Override

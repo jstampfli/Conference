@@ -29,6 +29,7 @@ import java.util.List;
 
 import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.Events.changeTime;
+import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTab3.convertTimes;
 import static com.pccaps.pmiconference.PreferenceActivitySettings.state;
 import static com.pccaps.pmiconference.Tab2.IDA;
@@ -101,6 +102,7 @@ public class Tab3 extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.tab3, container, false);
+
         listView = (ListView) rootView.findViewById(R.id.list_view);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -118,6 +120,8 @@ public class Tab3 extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+
+        //MainActivity.toolbar.setTitle("Tracks");
 
         Thread t = new Thread(){
             @Override

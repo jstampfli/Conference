@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.R.layout.popupwindowdates;
 import static com.pccaps.pmiconference.R.layout.popupwindowevents;
 import static com.pccaps.pmiconference.Tab2.properDateList;
@@ -25,7 +27,7 @@ import static com.pccaps.pmiconference.Tab3.trackList;
  * Created by jstampfli19 on 11/14/17.
  */
 
-public class PopTabDates extends Activity {
+public class PopTabDates extends AppCompatActivity {
 
     ListView listView;
     ArrayAdapter<String> adapter;
@@ -40,6 +42,8 @@ public class PopTabDates extends Activity {
         setContentView(popupwindowdates);
 
         datesTrack.clear();
+
+        toolbar.setTitle("Event Dates");
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

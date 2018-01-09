@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.R.layout.popupwindowdates;
 import static com.pccaps.pmiconference.R.layout.popupwindowevents;
 import static com.pccaps.pmiconference.Tab2.customizableList;
@@ -30,7 +32,7 @@ import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomL
  * Created by jstampfli19 on 11/14/17.
  */
 
-public class PopTabCustomizable extends Activity {
+public class PopTabCustomizable extends AppCompatActivity {
 
     ListView listView;
     ArrayAdapter<Events> adapter;
@@ -89,5 +91,8 @@ public class PopTabCustomizable extends Activity {
         });
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }

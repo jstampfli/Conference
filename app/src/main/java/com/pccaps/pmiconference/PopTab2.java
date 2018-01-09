@@ -3,12 +3,14 @@ package com.pccaps.pmiconference;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 
+import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTabCustomizable.customizableChoice;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
@@ -28,7 +30,7 @@ import static com.pccaps.pmiconference.Tab3.ratedSTime;
  * Created by jstampfli19 on 11/8/17.
  */
 
-public class PopTab2 extends Activity {
+public class PopTab2 extends AppCompatActivity {
     TextView textViewBlowup;
 
     static String removeCountChild;
@@ -38,6 +40,8 @@ public class PopTab2 extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.popupwindowtab2);
+
+        MainActivity.toolbar.setTitle("Details");
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

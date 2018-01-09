@@ -37,6 +37,7 @@ import android.widget.Toast;
 import static android.content.Context.MODE_PRIVATE;
 import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.Events.changeTime;
+import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTab3.convertTimes;
 import static com.pccaps.pmiconference.PreferenceActivitySettings.selectedInt;
 import static com.pccaps.pmiconference.PreferenceActivitySettings.state;
@@ -109,6 +110,8 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tab2, container, false);
 
+        //MainActivity.toolbar.setTitle("My Events");
+
         properDateList.clear();
 
         eventsView = (ListView) rootView.findViewById(R.id.eventsView);
@@ -174,6 +177,7 @@ public class Tab2 extends Fragment {
                         customizableList.add(list.get(prefs.getInt(String.valueOf(x), 0)));
                     }
                 }
+                //MainActivity.toolbar.setTitle("Event Tabs");
                 startActivity(new Intent(getActivity(), PopTabCustomizable.class));
             }
         });

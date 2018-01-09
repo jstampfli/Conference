@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONArray;
 
+import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTabEvents.eventsTrack;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
@@ -55,7 +57,7 @@ import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomL
  * Created by User1 on 10/3/2017.
  */
 
-public class PopTab3 extends Activity{
+public class PopTab3 extends AppCompatActivity{
 
     //comment created so i could submit unversioned files
     TextView textViewBlowup;
@@ -75,6 +77,8 @@ public class PopTab3 extends Activity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.popupwindowtab3);
+
+        MainActivity.toolbar.setTitle("Details");
 
         toast = Toast.makeText(context, text, duration);
 

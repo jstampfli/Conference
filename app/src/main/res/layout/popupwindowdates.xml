@@ -16,13 +16,11 @@
         android:layout_below="@+id/hIntro"/>
 
     <ListView
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:layout_alignParentLeft="true"
-        tools:context="com.pccaps.pmiconference.MainActivity$PlaceholderFragment"
         android:id="@+id/listDates"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="2dp">

@@ -7,12 +7,14 @@ package com.pccaps.pmiconference;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.pccaps.pmiconference.Events.changeDate;
+import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.prefs;
@@ -37,6 +40,7 @@ public class Tab1 extends Fragment{
     TextView pmiLink;
     ImageView logo;
     Button settingsButton;
+    Toolbar toolbar;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dRef = database.getReference("info");
@@ -44,6 +48,11 @@ public class Tab1 extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab1, container, false);
+
+        //MainActivity.toolbar.setTitle("About");
+
+        //toolbar = (Toolbar) rootView.findViewById(R.id.toolbarAbout);
+
 
         pmi = (TextView) rootView.findViewById(R.id.pmiBackground);
         pmi.setTextSize(15);
