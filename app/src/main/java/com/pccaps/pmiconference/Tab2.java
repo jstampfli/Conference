@@ -37,7 +37,7 @@ import android.widget.Toast;
 import static android.content.Context.MODE_PRIVATE;
 import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.Events.changeTime;
-import static com.pccaps.pmiconference.MainActivity.toolbar;
+//import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTab3.convertTimes;
 import static com.pccaps.pmiconference.PreferenceActivitySettings.selectedInt;
 import static com.pccaps.pmiconference.PreferenceActivitySettings.state;

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.pccaps.pmiconference.Events.changeDate;
-import static com.pccaps.pmiconference.MainActivity.toolbar;
+//import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.prefs;

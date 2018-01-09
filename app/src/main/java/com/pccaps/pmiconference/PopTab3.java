@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONArray;
 
-import static com.pccaps.pmiconference.MainActivity.toolbar;
+//import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTabEvents.eventsTrack;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
@@ -61,6 +61,7 @@ public class PopTab3 extends AppCompatActivity{
 
     //comment created so i could submit unversioned files
     TextView textViewBlowup;
+    TextView descriptionLink;
 
     Context context = this;
     String text = "Event Added";
@@ -78,7 +79,7 @@ public class PopTab3 extends AppCompatActivity{
 
         setContentView(R.layout.popupwindowtab3);
 
-        MainActivity.toolbar.setTitle("Details");
+        getSupportActionBar().setTitle("Details");
 
         toast = Toast.makeText(context, text, duration);
 
@@ -90,9 +91,13 @@ public class PopTab3 extends AppCompatActivity{
 
         getWindow().setLayout(width,height);
 
+        descriptionLink = (TextView) findViewById(R.id.description);
+        descriptionLink.setText(eventsTrack.get(eventChoice).D);
+        descriptionLink.setTextSize(20);
+
         textViewBlowup = (TextView) findViewById(R.id.blowup);
         textViewBlowup.setText(
-                "\n\n"+eventsTrack.get(eventChoice).subject+"\n\n"+eventsTrack.get(eventChoice).speaker+"\n\n"+eventsTrack.get(eventChoice).P+"\n\n"+eventsTrack.get(eventChoice).Adate+"\n\n"+eventsTrack.get(eventChoice).AsTime+" to "+eventsTrack.get(eventChoice).AeTime+"\n\n"+eventsTrack.get(eventChoice).D
+                "\n\n"+eventsTrack.get(eventChoice).subject+"\n\n"+eventsTrack.get(eventChoice).speaker+"\n\n"+eventsTrack.get(eventChoice).P+"\n\n"+eventsTrack.get(eventChoice).Adate+"\n\n"+eventsTrack.get(eventChoice).AsTime+" to "+eventsTrack.get(eventChoice).AeTime+"\n\n"
         );
         textViewBlowup.setTextSize(20);
 

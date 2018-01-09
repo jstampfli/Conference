@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
@@ -43,11 +44,17 @@ public class PopTabCustomizable extends AppCompatActivity {
 
     TextView helper;
     TextView helperIntro;
+    Toolbar toolbarCustomizable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(popupwindowdates);
+
+        //toolbarCustomizable = (Toolbar) findViewById(R.id.toolbarCustomizable);
+        //Might need to create a toolbar in the res file for each popup class and use those for each individual popup class
+        getSupportActionBar().setTitle("Event Tab");
+        //setSupportActionBar(toolbar);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

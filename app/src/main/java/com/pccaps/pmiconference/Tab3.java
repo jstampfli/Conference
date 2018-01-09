@@ -29,7 +29,7 @@ import java.util.List;
 
 import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.Events.changeTime;
-import static com.pccaps.pmiconference.MainActivity.toolbar;
+//import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTab3.convertTimes;
 import static com.pccaps.pmiconference.PreferenceActivitySettings.state;
 import static com.pccaps.pmiconference.Tab2.IDA;

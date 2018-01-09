@@ -14,7 +14,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.pccaps.pmiconference.MainActivity.toolbar;
+//import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTabDates.eventDateChoice;
 import static com.pccaps.pmiconference.R.layout.popupwindowevents;
 import static com.pccaps.pmiconference.Tab3.date;
@@ -45,7 +45,7 @@ public class PopTabEvents extends AppCompatActivity {
         eventsTrack.clear();
         tempTrack.clear();
 
-        toolbar.setTitle("Events");
+        getSupportActionBar().setTitle("Event Tabs");
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

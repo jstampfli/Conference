@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 
-import static com.pccaps.pmiconference.MainActivity.toolbar;
+//import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTabCustomizable.customizableChoice;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
@@ -32,6 +32,7 @@ import static com.pccaps.pmiconference.Tab3.ratedSTime;
 
 public class PopTab2 extends AppCompatActivity {
     TextView textViewBlowup;
+    TextView descriptionLink;
 
     static String removeCountChild;
 
@@ -41,7 +42,7 @@ public class PopTab2 extends AppCompatActivity {
 
         setContentView(R.layout.popupwindowtab2);
 
-        MainActivity.toolbar.setTitle("Details");
+        getSupportActionBar().setTitle("Details");
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -51,9 +52,13 @@ public class PopTab2 extends AppCompatActivity {
 
         getWindow().setLayout(width,height);
 
+        descriptionLink = (TextView) findViewById(R.id.description);
+        descriptionLink.setText(customizableList.get(customizableChoice).D);
+        descriptionLink.setTextSize(20);
+
         textViewBlowup = (TextView) findViewById(R.id.blowup);
         textViewBlowup.setText(
-                "\n\n"+customizableList.get(customizableChoice).subject+"\n\n"+customizableList.get(customizableChoice).speaker+"\n\n"+customizableList.get(customizableChoice).P+"\n\n"+customizableList.get(customizableChoice).Adate+"\n\n"+customizableList.get(customizableChoice).AsTime+" to "+customizableList.get(customizableChoice).AeTime+"\n\n"+customizableList.get(customizableChoice).D
+                "\n\n"+customizableList.get(customizableChoice).subject+"\n\n"+customizableList.get(customizableChoice).speaker+"\n\n"+customizableList.get(customizableChoice).P+"\n\n"+customizableList.get(customizableChoice).Adate+"\n\n"+customizableList.get(customizableChoice).AsTime+" to "+customizableList.get(customizableChoice).AeTime+"\n\n"
         );
         textViewBlowup.setTextSize(20);
     }

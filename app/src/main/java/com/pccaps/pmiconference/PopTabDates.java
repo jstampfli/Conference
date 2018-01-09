@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,6 +37,8 @@ public class PopTabDates extends AppCompatActivity {
 
     static int eventDateChoice;
 
+    Toolbar toolbarDates;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +46,12 @@ public class PopTabDates extends AppCompatActivity {
 
         datesTrack.clear();
 
-        toolbar.setTitle("Event Dates");
+        /*toolbarDates = (Toolbar) findViewById(R.id.toolbarCustomizable);
+        toolbarDates.setTitle("Event Dates");
+        setSupportActionBar(toolbarDates);*/
+
+        getSupportActionBar().setTitle("Event Dates");
+        //setSupportActionBar(toolbar);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
