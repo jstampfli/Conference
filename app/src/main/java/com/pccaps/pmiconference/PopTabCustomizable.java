@@ -16,9 +16,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.MainActivity.toolbar;
+import static com.pccaps.pmiconference.PopTab2.kill;
 import static com.pccaps.pmiconference.R.layout.popupwindowdates;
 import static com.pccaps.pmiconference.R.layout.popupwindowevents;
+import static com.pccaps.pmiconference.Tab2.customizableDates;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.howToAdd;
 import static com.pccaps.pmiconference.Tab2.intro;
@@ -35,12 +38,13 @@ import static com.pccaps.pmiconference.clearCustomizableWarning.userClearCustomL
 
 public class PopTabCustomizable extends AppCompatActivity {
 
-    ListView listView;
-    ArrayAdapter<Events> adapter;
+    static ListView listView;
+    static ArrayAdapter<Events> adapter;
 
-    List<Events> dateCustomizableList = new ArrayList<>();
+    static List<Events> dateCustomizableList = new ArrayList<>();
 
     static int customizableChoice;
+    static int dateChoice;
 
     TextView helper;
     TextView helperIntro;
@@ -51,9 +55,11 @@ public class PopTabCustomizable extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(popupwindowdates);
 
+        dateCustomizableList.clear();
+
         //toolbarCustomizable = (Toolbar) findViewById(R.id.toolbarCustomizable);
         //Might need to create a toolbar in the res file for each popup class and use those for each individual popup class
-        getSupportActionBar().setTitle("Event Tab");
+        getSupportActionBar().setTitle(customizableDates.get(tab2Choice));
         //setSupportActionBar(toolbar);
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -68,7 +74,7 @@ public class PopTabCustomizable extends AppCompatActivity {
 
         if(customizableList.size()>0){
             for(Events e : customizableList){
-                if(e.date==dateList.get(tab2Choice)){
+                if(changeDate(e.date).equals(customizableDates.get(tab2Choice))){
                     dateCustomizableList.add(e);
                 }
             }
@@ -93,6 +99,7 @@ public class PopTabCustomizable extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 customizableChoice=customizableList.indexOf(dateCustomizableList.get(position));
+                dateChoice = position;
                 startActivity(new Intent(getApplicationContext(), PopTab2.class));
             }
         });
@@ -101,5 +108,9 @@ public class PopTabCustomizable extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        if(kill){
+            kill=false;
+            this.finish();
+        }
     }
 }

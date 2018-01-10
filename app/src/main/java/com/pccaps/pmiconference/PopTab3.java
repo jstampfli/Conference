@@ -28,10 +28,14 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 
 //import static com.pccaps.pmiconference.MainActivity.toolbar;
+import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.PopTabEvents.eventsTrack;
+import static com.pccaps.pmiconference.Tab2.customizableDates;
 import static com.pccaps.pmiconference.Tab2.customizableList;
+import static com.pccaps.pmiconference.Tab2.datesAdapter;
 import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.eventsEquals;
+import static com.pccaps.pmiconference.Tab2.eventsView;
 import static com.pccaps.pmiconference.Tab2.findEvents;
 import static com.pccaps.pmiconference.Tab2.prefs;
 import static com.pccaps.pmiconference.Tab2.ratedEvent;
@@ -116,6 +120,10 @@ public class PopTab3 extends AppCompatActivity{
         if(check){
             userClearCustomList=false;
             customizableList.add(temp);
+            if(!customizableDates.contains(changeDate(temp.date))){
+                customizableDates.add(changeDate(temp.date));
+                eventsView.setAdapter(datesAdapter);
+            }
             toast.show();
 
             for(int i=0; i<ratedName.size(); i++){

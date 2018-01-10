@@ -13,8 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.R.layout.popupwindowdates;
 import static com.pccaps.pmiconference.R.layout.popupwindowevents;
@@ -33,7 +35,7 @@ public class PopTabDates extends AppCompatActivity {
     ListView listView;
     ArrayAdapter<String> adapter;
 
-    static List<Events> datesTrack = new ArrayList<>();
+    static List<String> datesTrack = new ArrayList<>();
 
     static int eventDateChoice;
 
@@ -50,7 +52,7 @@ public class PopTabDates extends AppCompatActivity {
         toolbarDates.setTitle("Event Dates");
         setSupportActionBar(toolbarDates);*/
 
-        getSupportActionBar().setTitle("Event Dates");
+        getSupportActionBar().setTitle(trackList.get(popChoice));
         //setSupportActionBar(toolbar);
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -68,8 +70,22 @@ public class PopTabDates extends AppCompatActivity {
                 datesTrack.add(list.get(i));
             }
         }*/
+        for(long i:dateList){
+            if(list.size()!=0){
+                for(Events e:list){
+                    if(e.tracks.equals(trackList.get(popChoice))){
+                        if(e.date==i){
+                            if(!datesTrack.contains(changeDate(i))){
+                                datesTrack.add(changeDate(i));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Collections.sort(datesTrack);
 
-        adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
+        adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.activity_list_item, android.R.id.text1, datesTrack);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -11,9 +11,16 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 
 //import static com.pccaps.pmiconference.MainActivity.toolbar;
+import static com.pccaps.pmiconference.Events.changeDate;
+import static com.pccaps.pmiconference.PopTabCustomizable.adapter;
 import static com.pccaps.pmiconference.PopTabCustomizable.customizableChoice;
+import static com.pccaps.pmiconference.PopTabCustomizable.dateChoice;
+import static com.pccaps.pmiconference.PopTabCustomizable.dateCustomizableList;
+import static com.pccaps.pmiconference.PopTabCustomizable.listView;
+import static com.pccaps.pmiconference.Tab2.customizableDates;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
+import static com.pccaps.pmiconference.Tab2.eventsEquals;
 import static com.pccaps.pmiconference.Tab2.findEvents;
 import static com.pccaps.pmiconference.Tab2.tab2Choice;
 import static com.pccaps.pmiconference.Tab3.allCount;
@@ -35,6 +42,7 @@ public class PopTab2 extends AppCompatActivity {
     TextView descriptionLink;
 
     static String removeCountChild;
+    static Boolean kill=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -63,7 +71,20 @@ public class PopTab2 extends AppCompatActivity {
         textViewBlowup.setTextSize(20);
     }
     public void removeEventsClick(View view){
-        //Events temp = new Events(customizableList.get(popChoice).speaker, customizableList.get(popChoice).STime, customizableList.get(popChoice).ETime, customizableList.get(popChoice).P, customizableList.get(popChoice).D, customizableList.get(popChoice).subject, customizableList.get(popChoice).date);
+        Events temp = new Events(customizableList.get(customizableChoice).speaker, customizableList.get(customizableChoice).STime, customizableList.get(customizableChoice).ETime, customizableList.get(customizableChoice).P, customizableList.get(customizableChoice).D, customizableList.get(customizableChoice).subject, customizableList.get(customizableChoice).date, customizableList.get(customizableChoice).tracks);
+        Boolean otherDate=false;
+        for(Events e:customizableList){
+            if(e.date==temp.date && !eventsEquals(e, temp)){
+                otherDate=true;
+            }
+        }
+        if(!otherDate){
+            for(int i=0; i<customizableDates.size(); i++){
+                if(customizableDates.get(i).equals(changeDate(temp.date))){
+                    customizableDates.remove(i);
+                }
+            }
+        }
         for (int i = 0; i < customizableList.size(); i++) {
             editor.remove(String.valueOf(i));
         }
@@ -80,6 +101,11 @@ public class PopTab2 extends AppCompatActivity {
         ref.setValue(countCount);
 
         customizableList.remove(customizableList.get(customizableChoice));
+        dateCustomizableList.remove(dateChoice);
+        if(dateCustomizableList.size()==0){
+            kill=true;
+        }
+        listView.setAdapter(adapter);
 
         /**/
 

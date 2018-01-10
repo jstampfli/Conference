@@ -56,6 +56,7 @@ public class Tab2 extends Fragment {
     static ListView eventsView;
     static List<Events> customizableList = new ArrayList<>();
     static ArrayAdapter datesAdapter;
+    static List<String> customizableDates = new ArrayList<>();
 
     static int tab2Choice;
 
@@ -143,8 +144,22 @@ public class Tab2 extends Fragment {
         remoteViews.setOnClickPendingIntent(R.id.rate4, intent4);
         remoteViews.setOnClickPendingIntent(R.id.rate5, intent5);
 
+        for(long i:dateList){
+            if(customizableList.size()!=0){
+                for(Events e:customizableList){
+                    if(e.date==i){
+                        if(!customizableDates.contains(changeDate(i))){
+                            customizableDates.add(changeDate(i));
+                        }
+                    }
+                }
+            }
+        }
 
-        datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
+        Collections.sort(customizableDates);
+
+
+        datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, customizableDates);
         eventsView.setAdapter(datesAdapter);
 
         /*if(userClearCustomList){

@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import static com.pccaps.pmiconference.Settings.editorNotification;
 import static com.pccaps.pmiconference.Settings.globalPosition;
+import static com.pccaps.pmiconference.Tab2.customizableDates;
 import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.prefs;
@@ -73,6 +74,7 @@ public class clearCustomizableWarning extends Activity {
             DatabaseReference ref = database.getReference("events").child(countChild).child("count");
             ref.setValue(countCount);
         }
+        customizableDates.clear();
         this.finish();
     }
     public void saveClick(View view){

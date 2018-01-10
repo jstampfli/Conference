@@ -113,6 +113,8 @@ public class Tab3 extends Fragment{
             }
         });
 
+        eventsView.setAdapter(datesAdapter);
+
         return rootView;
 
     }
@@ -228,7 +230,7 @@ public class Tab3 extends Fragment{
         };
         t.start();
 
-        datesAdapter = new ArrayAdapter<>(getActivity(), R.layout.custom_list, android.R.id.text1, properDateList);
+        //datesAdapter = new ArrayAdapter<>(getActivity(), R.layout.custom_list, android.R.id.text1, properDateList);
         eventsView.setAdapter(datesAdapter);
 
         dRef.addValueEventListener(new ValueEventListener() {
@@ -307,7 +309,7 @@ public class Tab3 extends Fragment{
 
                             Collections.sort(properDateList);
 
-                            datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
+                            //datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, properDateList);
                             eventsView.setAdapter(datesAdapter);
 
                             temp = new Events(name, startTime, endTime, location, description, subject, date, tracks);
