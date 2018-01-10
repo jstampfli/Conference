@@ -38,6 +38,7 @@ public class PopTabDates extends AppCompatActivity {
     static List<String> datesTrack = new ArrayList<>();
 
     static int eventDateChoice;
+    static String title;
 
     Toolbar toolbarDates;
 
@@ -48,11 +49,13 @@ public class PopTabDates extends AppCompatActivity {
 
         datesTrack.clear();
 
+        title=trackList.get(popChoice);
+
         /*toolbarDates = (Toolbar) findViewById(R.id.toolbarCustomizable);
         toolbarDates.setTitle("Event Dates");
         setSupportActionBar(toolbarDates);*/
 
-        getSupportActionBar().setTitle(trackList.get(popChoice));
+        getSupportActionBar().setTitle(title);
         //setSupportActionBar(toolbar);
 
         DisplayMetrics dm = new DisplayMetrics();

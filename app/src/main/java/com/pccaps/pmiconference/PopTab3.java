@@ -123,6 +123,10 @@ public class PopTab3 extends AppCompatActivity{
             if(!customizableDates.contains(changeDate(temp.date))){
                 customizableDates.add(changeDate(temp.date));
                 eventsView.setAdapter(datesAdapter);
+                editor.putInt("datesSize", prefs.getInt("datesSize", 0)+1);
+            }
+            for(int i=0; i<customizableDates.size(); i++){
+                editor.putString("c"+String.valueOf(i), customizableDates.get(i));
             }
             toast.show();
 

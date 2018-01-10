@@ -18,6 +18,7 @@ import java.util.List;
 import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.PopTabDates.datesTrack;
 import static com.pccaps.pmiconference.PopTabDates.eventDateChoice;
+import static com.pccaps.pmiconference.PopTabDates.title;
 import static com.pccaps.pmiconference.R.layout.popupwindowevents;
 import static com.pccaps.pmiconference.Tab3.date;
 import static com.pccaps.pmiconference.Tab3.dateList;
@@ -47,7 +48,7 @@ public class PopTabEvents extends AppCompatActivity {
         eventsTrack.clear();
         tempTrack.clear();
 
-        getSupportActionBar().setTitle(datesTrack.get(eventDateChoice));
+        getSupportActionBar().setTitle(title+": "+datesTrack.get(eventDateChoice));
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

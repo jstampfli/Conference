@@ -60,6 +60,10 @@ public class Tab2 extends Fragment {
 
     static int tab2Choice;
 
+    static Boolean firstOn=true;
+    static Boolean firstEver=false;
+    static Boolean worked=false;
+
     static String intro = "To add and Event to this Page:";
     static String howToAdd = "\n1.\tGo to the schedule tab\n\n 2.\tClick on a track and then an event that you find interesting\n\n 3.\tClick the \"Add Event\" button\n\n4.\tGo to the \"SAVED EVENTS\" tab to see the event";
 
@@ -111,6 +115,9 @@ public class Tab2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tab2, container, false);
 
+        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        editor = prefs.edit();
+
         //MainActivity.toolbar.setTitle("My Events");
 
         properDateList.clear();
@@ -144,6 +151,16 @@ public class Tab2 extends Fragment {
         remoteViews.setOnClickPendingIntent(R.id.rate4, intent4);
         remoteViews.setOnClickPendingIntent(R.id.rate5, intent5);
 
+        if(firstOn /*&& !firstEver && worked*/){
+            for(int i=0; i<prefs.getInt("datesSize", 0); i++){
+                customizableDates.add(prefs.getString("c"+String.valueOf(i), ""));
+            }
+            firstOn=false;
+            //firstEver=false;
+            //editor.putBoolean("firstEver", true);
+            //editor.commit();
+        }
+
         for(long i:dateList){
             if(customizableList.size()!=0){
                 for(Events e:customizableList){
@@ -158,6 +175,14 @@ public class Tab2 extends Fragment {
 
         Collections.sort(customizableDates);
 
+        for(int i=0; i<customizableDates.size(); i++){
+            editor.putString("c"+String.valueOf(i), customizableDates.get(i));
+        }
+        if(customizableDates.size()!=0){
+            editor.putInt("datesSize", customizableDates.size());
+            editor.commit();
+            worked=true;
+        }
 
         datesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.activity_list_item, android.R.id.text1, customizableDates);
         eventsView.setAdapter(datesAdapter);

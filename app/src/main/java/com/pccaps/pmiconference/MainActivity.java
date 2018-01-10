@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     final String[] toolbarTitles = new String[]{
-            "My Events",
+            "My Schedule",
             "Tracks",
             "About"
     };
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         decorView = getWindow().getDecorView();
         toolbar = (Toolbar) findViewById(R.id.toolbarMain);
-        toolbar.setTitle("My Events");
+        toolbar.setTitle("My Schedule");
         setSupportActionBar(toolbar);
 
         /*decorView.setSystemUiVisibility(

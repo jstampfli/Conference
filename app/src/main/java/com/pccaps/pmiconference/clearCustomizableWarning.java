@@ -75,6 +75,11 @@ public class clearCustomizableWarning extends Activity {
             ref.setValue(countCount);
         }
         customizableDates.clear();
+        for(int i=0; i<prefs.getInt("datesSize", 0); i++){
+            editor.remove("c"+String.valueOf(i));
+        }
+        editor.putInt("datesSize", 0);
+        editor.commit();
         this.finish();
     }
     public void saveClick(View view){

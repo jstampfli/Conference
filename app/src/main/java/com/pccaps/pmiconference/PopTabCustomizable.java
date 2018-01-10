@@ -19,6 +19,7 @@ import java.util.List;
 import static com.pccaps.pmiconference.Events.changeDate;
 import static com.pccaps.pmiconference.MainActivity.toolbar;
 import static com.pccaps.pmiconference.PopTab2.kill;
+import static com.pccaps.pmiconference.PopTabDates.title;
 import static com.pccaps.pmiconference.R.layout.popupwindowdates;
 import static com.pccaps.pmiconference.R.layout.popupwindowevents;
 import static com.pccaps.pmiconference.Tab2.customizableDates;
