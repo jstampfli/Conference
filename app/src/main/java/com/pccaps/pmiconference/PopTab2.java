@@ -22,6 +22,7 @@ import static com.pccaps.pmiconference.Tab2.customizableList;
 import static com.pccaps.pmiconference.Tab2.editor;
 import static com.pccaps.pmiconference.Tab2.eventsEquals;
 import static com.pccaps.pmiconference.Tab2.findEvents;
+import static com.pccaps.pmiconference.Tab2.prefs;
 import static com.pccaps.pmiconference.Tab2.tab2Choice;
 import static com.pccaps.pmiconference.Tab3.allCount;
 import static com.pccaps.pmiconference.Tab3.childrenValues;
@@ -82,6 +83,10 @@ public class PopTab2 extends AppCompatActivity {
             for(int i=0; i<customizableDates.size(); i++){
                 if(customizableDates.get(i).equals(changeDate(temp.date))){
                     customizableDates.remove(i);
+                }
+                if(prefs.getString("c"+String.valueOf(i), "").equals(changeDate(temp.date))){
+                    editor.remove("c"+String.valueOf(i));
+                    editor.putInt("datesSize", prefs.getInt("datesSize", 0)-1);
                 }
             }
         }

@@ -94,7 +94,7 @@ public class Tab2 extends Fragment {
     static Events ratedEvent;
 
     public static boolean eventsEquals(Events e1, Events e2){
-        if((e1.STime==e2.STime) && (e1.speaker.equals(e2.speaker)) && (e1.subject.equals(e2.subject)) && e1.date==e2.date){
+        if((e1.STime==e2.STime) && (e1.speaker.equals(e2.speaker)) && (e1.subject.equals(e2.subject)) && e1.date==e2.date && e1.tracks.equals(e2.tracks) && e1.P.equals(e2.P)){
             return true;
         }
         return false;
@@ -209,6 +209,7 @@ public class Tab2 extends Fragment {
                     editor.putInt("customizableListSize", 0);
                     editor.commit();
                 }*/
+                //move this code maybe doesnt make sense to recreate the customizable list here.
                 for(int x=0; x<prefs.getInt("customizableListSize", 0); x++){
                     if(findEvents(list.get(prefs.getInt(String.valueOf(x), 0)), customizableList)>-1){
                         continue;
